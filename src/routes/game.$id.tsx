@@ -3,7 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Star, X, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
-import { GAMES, priceAfterDiscount } from "@/lib/games";
+import { GAMES, priceAfterDiscount, type Game } from "@/lib/games";
 import { SAMPLE_REVIEWS } from "@/lib/friends";
 import { useShop } from "@/store/shop";
 import GameCard from "@/components/GameCard";
@@ -58,7 +58,7 @@ function GamePage() {
 
   const isWished = wishlist.includes(game.id);
   const finalPrice = priceAfterDiscount(game);
-  const similar = GAMES.filter((g: typeof game) => g.id !== game.id).slice(0, 3);
+  const similar = GAMES.filter((g: Game) => g.id !== game.id).slice(0, 3);
 
   return (
     <motion.div
