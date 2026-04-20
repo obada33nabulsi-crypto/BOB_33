@@ -232,8 +232,6 @@ function Input({ label, placeholder, full }: { label: string; placeholder?: stri
 }
 
 function ConfirmStep({ orderId, onClose }: { orderId: string; onClose: () => void }) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const _ = orderId;
   // Generate confetti positions once
   const particles = useMemo(
     () =>
