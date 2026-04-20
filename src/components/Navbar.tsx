@@ -142,9 +142,9 @@ export default function Navbar() {
             </span>
           </button>
           {/* Library */}
-          <button className="relative p-2 hover:bg-primary/10 transition hidden sm:block" aria-label="Library">
+          <Link to="/library" className="relative p-2 hover:bg-primary/10 transition hidden sm:block" aria-label="Library">
             <img src={libraryIcon} alt="" className="pixel-img h-7 w-7" />
-          </button>
+          </Link>
           {/* Cart */}
           <motion.button
             onClick={toggleCart}

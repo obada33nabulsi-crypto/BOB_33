@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, CreditCard, Wallet, Trash2 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { useUI } from "@/store/ui";
 import { useShop } from "@/store/shop";
 import { priceAfterDiscount, type Game } from "@/lib/games";
@@ -10,7 +11,7 @@ type PayMethod = "saved" | "new" | "wallet";
 
 export default function CheckoutModal() {
   const { checkoutOpen, setCheckoutOpen } = useUI();
-  const { cart, getGame, removeFromCart, clearCart } = useShop();
+  const { cart, getGame, removeFromCart, clearCart, addToLibrary } = useShop();
   const [step, setStep] = useState<Step>(1);
   const [pay, setPay] = useState<PayMethod>("saved");
   const [orderId, setOrderId] = useState<string>("");
@@ -30,7 +31,9 @@ export default function CheckoutModal() {
   };
 
   const goConfirm = () => {
-    setOrderId("UMB-" + Math.random().toString(36).slice(2, 8).toUpperCase());
+    const newOrderId = "UMB-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+    setOrderId(newOrderId);
+    addToLibrary(cart, newOrderId);
     setStep(3);
     setTimeout(() => clearCart(), 300);
   };
@@ -277,12 +280,13 @@ function ConfirmStep({ orderId, onClose }: { orderId: string; onClose: () => voi
       </p>
 
       <div className="flex flex-wrap items-center justify-center gap-3">
-        <button
+        <Link
+          to="/library"
           onClick={onClose}
           className="px-5 py-3 bg-primary text-primary-foreground font-display text-[10px] tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
         >
           GO TO LIBRARY
-        </button>
+        </Link>
         <button
           onClick={onClose}
           className="px-5 py-3 glass pixel-border font-display text-[10px] tracking-wider hover:border-primary"
