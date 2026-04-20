@@ -16,7 +16,7 @@ const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 
 export default function Navbar() {
   const { cart, wishlist } = useShop();
-  const { toggleFriends } = useUI();
+  const { toggleFriends, toggleCart, cartBounce } = useUI();
   const [query, setQuery] = useState("");
   const [showCats, setShowCats] = useState(false);
   const [showMobile, setShowMobile] = useState(false);
@@ -146,7 +146,14 @@ export default function Navbar() {
             <img src={libraryIcon} alt="" className="pixel-img h-7 w-7" />
           </button>
           {/* Cart */}
-          <button className="relative p-2 hover:bg-primary/10 transition group" aria-label="Cart">
+          <motion.button
+            onClick={toggleCart}
+            animate={cartBounce > 0 ? { scale: [1, 1.25, 0.9, 1.1, 1], rotate: [0, -8, 8, -4, 0] } : {}}
+            transition={{ duration: 0.5 }}
+            key={cartBounce}
+            className="relative p-2 hover:bg-primary/10 transition group"
+            aria-label="Cart"
+          >
             <img src={cartIcon} alt="" className="pixel-img h-8 w-8" />
             <AnimatePresence>
               {cart.length > 0 && (
@@ -161,7 +168,7 @@ export default function Navbar() {
                 </motion.span>
               )}
             </AnimatePresence>
-          </button>
+          </motion.button>
           {/* Settings */}
           <Link to="/profile" className="hidden sm:flex p-2 hover:bg-primary/10 transition" aria-label="Settings">
             <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
