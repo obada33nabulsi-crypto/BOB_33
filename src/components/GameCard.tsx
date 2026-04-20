@@ -65,8 +65,9 @@ export default function GameCard({ game }: { game: Game }) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                addToCart(game.id);
-                toast.success(`${game.title} added to cart`);
+                const added = addToCart(game.id);
+                if (added) { bumpCart(); toast.success(`${game.title} added to cart!`); }
+                else toast("Already in your cart!");
               }}
               className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground font-display text-[10px] tracking-wider pixel-border-pink"
             >

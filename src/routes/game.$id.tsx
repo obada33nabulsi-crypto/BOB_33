@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { GAMES, priceAfterDiscount, type Game } from "@/lib/games";
 import { SAMPLE_REVIEWS } from "@/lib/friends";
 import { useShop } from "@/store/shop";
+import { useUI } from "@/store/ui";
 import GameCard from "@/components/GameCard";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
