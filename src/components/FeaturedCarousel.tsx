@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Star, ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { GAMES, priceAfterDiscount } from "@/lib/games";
 import { useShop } from "@/store/shop";
+import cartIcon from "@/assets/icon-cart.png";
+import heartIcon from "@/assets/icon-heart.png";
 
 const SLIDES = GAMES.slice(0, 4);
 
@@ -22,20 +24,20 @@ export default function FeaturedCarousel() {
     <section className="container mx-auto px-4 lg:px-8 py-16">
       <div className="flex items-end justify-between mb-6">
         <div>
-          <div className="text-xs font-heading uppercase tracking-[0.3em] text-primary mb-2">Trending now</div>
-          <h2 className="font-display text-4xl md:text-5xl">Featured Games</h2>
+          <div className="font-display text-[10px] tracking-[0.3em] text-primary mb-2">// TRENDING NOW</div>
+          <h2 className="font-display text-2xl md:text-4xl">FEATURED GAMES</h2>
         </div>
         <div className="hidden md:flex gap-2">
-          <button onClick={() => setIdx((i) => (i - 1 + SLIDES.length) % SLIDES.length)} className="h-10 w-10 rounded-full glass flex items-center justify-center hover:bg-primary/10 hover:border-primary/50 transition">
+          <button onClick={() => setIdx((i) => (i - 1 + SLIDES.length) % SLIDES.length)} className="h-10 w-10 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <button onClick={() => setIdx((i) => (i + 1) % SLIDES.length)} className="h-10 w-10 rounded-full glass flex items-center justify-center hover:bg-primary/10 hover:border-primary/50 transition">
+          <button onClick={() => setIdx((i) => (i + 1) % SLIDES.length)} className="h-10 w-10 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
 
-      <div className="relative h-[420px] md:h-[480px] rounded-2xl overflow-hidden glass">
+      <div className="relative h-[420px] md:h-[480px] overflow-hidden border-2 border-border" style={{ boxShadow: "6px 6px 0 0 #1a1a1a" }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={game.id}
@@ -48,41 +50,41 @@ export default function FeaturedCarousel() {
             <img src={game.cover} alt={game.title} loading="lazy" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+            <div className="absolute inset-0 scanlines opacity-20" />
 
             <div className="absolute bottom-0 left-0 p-8 md:p-12 max-w-xl">
               {game.discount && (
-                <div className="inline-block px-3 py-1 mb-4 rounded bg-accent text-accent-foreground font-heading font-bold text-sm tracking-wider glow-purple">
+                <div className="inline-block px-3 py-1 mb-4 bg-[var(--brand-green-1)] text-[var(--gray-deep)] font-display text-[10px] tracking-wider">
                   -{game.discount}% LIMITED
                 </div>
               )}
-              <h3 className="font-display text-5xl md:text-6xl mb-3 text-gradient-neon">{game.title}</h3>
+              <h3 className="font-display text-3xl md:text-5xl mb-4 text-gradient-pink leading-tight">{game.title}</h3>
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex items-center gap-1">
-                  <Star className="h-4 w-4 fill-primary text-primary" />
-                  <span className="text-sm">{game.rating}</span>
+                  <Star className="h-4 w-4 fill-[var(--brand-green-1)] text-[var(--brand-green-1)]" />
+                  <span className="font-heading text-lg">{game.rating}</span>
                 </div>
-                <span className="text-muted-foreground text-sm">{game.genres.join(" · ")}</span>
+                <span className="font-heading text-lg text-muted-foreground">{game.genres.join(" · ")}</span>
               </div>
-              <p className="text-foreground/80 mb-6 max-w-md">{game.description}</p>
+              <p className="font-heading text-xl text-foreground/80 mb-6 max-w-md leading-tight">{game.description}</p>
               <div className="flex items-center gap-3">
-                <button onClick={() => addToCart(game.id)} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--gradient-neon)] text-primary-foreground font-heading font-bold uppercase tracking-wider text-sm glow-cyan hover:scale-105 transition">
-                  <Plus className="h-4 w-4" /> ${priceAfterDiscount(game)}
+                <button onClick={() => addToCart(game.id)} className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform">
+                  <img src={cartIcon} alt="" className="pixel-img h-5 w-5" /> ${priceAfterDiscount(game)}
                 </button>
-                <button onClick={() => toggleWishlist(game.id)} className="h-11 w-11 rounded-md glass flex items-center justify-center hover:border-primary/50 transition">
-                  <Heart className={`h-4 w-4 ${isWished ? "fill-red-500 text-red-500" : ""}`} />
+                <button onClick={() => toggleWishlist(game.id)} className="h-12 w-12 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
+                  <img src={heartIcon} alt="" className={`pixel-img h-5 w-5 ${isWished ? "opacity-100" : "opacity-40 grayscale"}`} />
                 </button>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Dots */}
         <div className="absolute bottom-4 right-6 flex gap-2 z-10">
           {SLIDES.map((_, i) => (
             <button
               key={i}
               onClick={() => setIdx(i)}
-              className={`h-1.5 rounded-full transition-all ${i === idx ? "w-8 bg-primary glow-cyan" : "w-2 bg-foreground/30"}`}
+              className={`h-2 transition-all ${i === idx ? "w-8 bg-primary" : "w-2 bg-foreground/30"}`}
             />
           ))}
         </div>

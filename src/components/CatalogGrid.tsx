@@ -7,8 +7,8 @@ export default function CatalogGrid() {
     <section id="catalog" className="container mx-auto px-4 lg:px-8 py-16">
       <div className="flex items-end justify-between mb-8">
         <div>
-          <div className="text-xs font-heading uppercase tracking-[0.3em] text-primary mb-2">Discover</div>
-          <h2 className="font-display text-4xl md:text-5xl">Top Picks</h2>
+          <div className="font-display text-[10px] tracking-[0.3em] text-primary mb-2">// DISCOVER</div>
+          <h2 className="font-display text-2xl md:text-4xl">TOP PICKS</h2>
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">

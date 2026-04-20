@@ -1,8 +1,10 @@
-import { Play, Plus, Star } from "lucide-react";
+import { Play, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { HERO_IMAGE } from "@/lib/games";
 import { useShop } from "@/store/shop";
+import cartIcon from "@/assets/icon-cart.png";
+import controllerIcon from "@/assets/icon-controller.png";
 
 export default function Hero() {
   const { addToCart } = useShop();
@@ -32,7 +34,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
       </div>
 
-      {/* Animated scan line */}
+      {/* Scanlines + scan line */}
+      <div className="pointer-events-none absolute inset-0 scanlines opacity-30" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-scan" />
       </div>
@@ -43,28 +46,28 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-heading uppercase tracking-[0.2em] text-primary mb-6"
+            className="inline-flex items-center gap-2 px-3 py-2 glass pixel-border font-display text-[10px] tracking-[0.2em] text-primary mb-6"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            Featured Release
+            <img src={controllerIcon} alt="" className="pixel-img h-4 w-4" />
+            FEATURED · NOW PLAYING
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-6xl md:text-8xl leading-[0.9] mb-4"
+            className="font-display text-4xl md:text-6xl leading-[1.05] mb-6"
           >
             CYBER
             <br />
-            <span className="text-gradient-neon">ODYSSEY</span>
+            <span className="text-gradient-pink">ODYSSEY</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg text-muted-foreground mb-6 max-w-lg"
+            className="font-heading text-2xl text-muted-foreground mb-6 max-w-lg leading-tight"
           >
             Step into a neon-soaked metropolis where every alley hides a secret and every choice rewrites the future. The most ambitious open world of the decade.
           </motion.p>
@@ -77,11 +80,11 @@ export default function Hero() {
           >
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className={`h-4 w-4 ${i < 4 ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+                <Star key={i} className={`h-4 w-4 ${i < 4 ? "fill-[var(--brand-green-1)] text-[var(--brand-green-1)]" : "text-muted-foreground"}`} />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.8 · 24.3k reviews</span>
+              <span className="ml-2 font-heading text-lg text-muted-foreground">4.8 · 24.3K REVIEWS</span>
             </div>
-            <div className="px-3 py-1 rounded bg-accent/20 border border-accent/50 text-xs font-heading font-bold uppercase tracking-wider text-accent">
+            <div className="px-3 py-1 bg-[var(--brand-green-1)] text-[var(--gray-deep)] font-display text-[10px] tracking-wider">
               -60% OFF
             </div>
           </motion.div>
@@ -94,14 +97,15 @@ export default function Hero() {
           >
             <button
               onClick={() => addToCart("cyber-odyssey")}
-              className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[var(--gradient-neon)] text-primary-foreground font-heading font-bold uppercase tracking-wider text-sm glow-cyan hover:scale-105 transition-transform"
+              className="group relative inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
             >
-              <Plus className="h-4 w-4" /> Add to Cart
-              <span className="ml-2 px-2 py-0.5 rounded bg-background/30 text-xs">$23.99</span>
-              <span className="ml-1 text-xs line-through opacity-60">$59.99</span>
+              <img src={cartIcon} alt="" className="pixel-img h-5 w-5" />
+              ADD TO CART
+              <span className="ml-2 px-2 py-1 bg-[var(--gray-deep)]/40 text-[10px]">$23.99</span>
+              <span className="text-[10px] line-through opacity-60">$59.99</span>
             </button>
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-md glass text-foreground font-heading font-bold uppercase tracking-wider text-sm hover:bg-primary/10 hover:border-primary/50 transition">
-              <Play className="h-4 w-4 fill-current" /> Watch Trailer
+            <button className="inline-flex items-center gap-2 px-6 py-3 glass pixel-border text-foreground font-display text-xs tracking-wider hover:border-primary transition">
+              <Play className="h-4 w-4 fill-current" /> WATCH TRAILER
             </button>
           </motion.div>
         </div>

@@ -1,24 +1,26 @@
 import { Twitter, Github, Twitch, Youtube } from "lucide-react";
 import { useState } from "react";
+import logoUrl from "@/assets/logo-umbrella.png";
+import controllerIcon from "@/assets/icon-controller.png";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [sub, setSub] = useState(false);
 
   return (
-    <footer className="mt-16 border-t border-border">
+    <footer className="mt-16 border-t-2 border-primary">
       <div className="container mx-auto px-4 lg:px-8 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-8 w-8 rounded-md bg-[var(--gradient-neon)] glow-cyan" />
-            <span className="font-display text-2xl tracking-widest text-gradient-neon">UMBRELLA</span>
+          <div className="flex items-center gap-3 mb-4">
+            <img src={controllerIcon} alt="" className="pixel-img h-9 w-9" />
+            <img src={logoUrl} alt="Umbrella" className="pixel-img h-8 w-auto" />
           </div>
-          <p className="text-sm text-muted-foreground max-w-xs">
-            The premium destination for next-gen gaming. Powered by players, built for legends.
+          <p className="font-heading text-xl text-muted-foreground max-w-xs leading-tight">
+            The premium pixel destination for next-gen gaming. Powered by players, built for legends.
           </p>
           <div className="flex gap-3 mt-6">
             {[Twitter, Github, Twitch, Youtube].map((Icon, i) => (
-              <a key={i} href="#" className="h-9 w-9 rounded-md glass flex items-center justify-center hover:border-primary/50 hover:text-primary transition">
+              <a key={i} href="#" className="h-10 w-10 bg-card border-2 border-border flex items-center justify-center hover:border-primary hover:text-primary transition">
                 <Icon className="h-4 w-4" />
               </a>
             ))}
@@ -26,12 +28,12 @@ export default function Footer() {
         </div>
 
         {[
-          { title: "Store", links: ["Browse", "New Releases", "Top Sellers", "Free Games"] },
-          { title: "Community", links: ["Forums", "Reviews", "Events", "Creators"] },
+          { title: "STORE", links: ["Browse", "New Releases", "Top Sellers", "Free Games"] },
+          { title: "COMMUNITY", links: ["Forums", "Reviews", "Events", "Creators"] },
         ].map((col) => (
           <div key={col.title}>
-            <h4 className="font-heading font-bold uppercase tracking-widest text-sm mb-4">{col.title}</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-display text-xs tracking-widest text-primary mb-4">{col.title}</h4>
+            <ul className="space-y-2 font-heading text-xl text-muted-foreground">
               {col.links.map((l) => (
                 <li key={l}><a href="#" className="hover:text-primary transition">{l}</a></li>
               ))}
@@ -40,8 +42,8 @@ export default function Footer() {
         ))}
 
         <div>
-          <h4 className="font-heading font-bold uppercase tracking-widest text-sm mb-4">Newsletter</h4>
-          <p className="text-sm text-muted-foreground mb-3">Get drop alerts and exclusive deals.</p>
+          <h4 className="font-display text-xs tracking-widest text-primary mb-4">NEWSLETTER</h4>
+          <p className="font-heading text-xl text-muted-foreground mb-3 leading-tight">Get drop alerts and exclusive deals.</p>
           <form
             onSubmit={(e) => { e.preventDefault(); if (email) setSub(true); }}
             className="flex gap-2"
@@ -51,20 +53,20 @@ export default function Footer() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@umbrella.gg"
-              className="flex-1 px-3 py-2 rounded-md bg-input/60 border border-border text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              className="flex-1 px-3 py-2 bg-input border-2 border-border font-heading text-lg outline-none focus:border-primary"
             />
-            <button className="px-4 py-2 rounded-md bg-[var(--gradient-neon)] text-primary-foreground text-sm font-heading font-bold uppercase tracking-wider glow-cyan">
-              Join
+            <button className="px-4 py-2 bg-primary text-primary-foreground font-display text-[10px] tracking-wider pixel-border-pink">
+              JOIN
             </button>
           </form>
-          {sub && <p className="text-xs text-primary mt-2">✓ Welcome to the squad.</p>}
+          {sub && <p className="font-heading text-lg text-[var(--brand-green-1)] mt-2">✓ WELCOME TO THE SQUAD</p>}
           <div className="flex gap-2 mt-6">
-            <div className="px-2 py-1 rounded glass text-[10px] font-heading uppercase tracking-wider">Win · Mac · Linux</div>
+            <div className="px-2 py-1 bg-secondary text-secondary-foreground font-display text-[10px] tracking-wider">WIN · MAC · LINUX</div>
           </div>
         </div>
       </div>
-      <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Umbrella Interactive. All rights reserved.
+      <div className="border-t-2 border-border py-6 text-center font-display text-[10px] tracking-widest text-muted-foreground">
+        © {new Date().getFullYear()} UMBRELLA INTERACTIVE
       </div>
     </footer>
   );
