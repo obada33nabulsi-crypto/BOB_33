@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Search, ChevronDown, Menu, X, Users } from "lucide-react";
+import { Search, ChevronDown, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { GAMES } from "@/lib/games";
@@ -11,6 +11,7 @@ import homeIcon from "@/assets/icon-home.png";
 import heartIcon from "@/assets/icon-heart.png";
 import libraryIcon from "@/assets/icon-library.png";
 import settingsIcon from "@/assets/icon-settings.png";
+import controllerIcon from "@/assets/icon-controller.png";
 
 const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 
@@ -136,7 +137,7 @@ export default function Navbar() {
             className="relative p-2 hover:bg-primary/10 transition"
             aria-label="Friends"
           >
-            <Users className="h-6 w-6 text-foreground" />
+            <img src={controllerIcon} alt="" className="pixel-img h-7 w-7" />
             <span className="absolute -top-0.5 -right-0.5 h-5 min-w-5 bg-[var(--brand-green-1)] text-[10px] font-display text-[var(--gray-deep)] flex items-center justify-center px-1">
               3
             </span>
