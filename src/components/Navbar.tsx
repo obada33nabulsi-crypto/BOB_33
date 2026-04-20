@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import { Search, ChevronDown, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { GAMES } from "@/lib/games";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
@@ -23,6 +23,8 @@ export default function Navbar() {
   const [showMobile, setShowMobile] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
   const catRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const path = location.pathname;
 
   const suggestions = useMemo(() => {
     if (!query.trim()) return [];
@@ -36,6 +38,9 @@ export default function Navbar() {
     document.addEventListener("mousedown", onClick);
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
+
+  const navBtn = (active: boolean) =>
+    `relative p-2 transition ${active ? "bg-primary/20 text-primary" : "hover:bg-primary/10"}`;
 
   return (
     <header className="glass-strong sticky top-0 z-50">
@@ -122,19 +127,23 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
+          {/* Messages */}
+          <Link to="/messages" className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages">
+            <img src={controllerIcon} alt="" className="pixel-img h-7 w-7" />
+          </Link>
           {/* Wishlist */}
-          <button className="relative p-2 hover:bg-primary/10 transition group" aria-label="Wishlist">
+          <Link to="/favorites" className={navBtn(path === "/favorites")} aria-label="Wishlist">
             <img src={heartIcon} alt="" className="pixel-img h-7 w-7" />
             {wishlist.length > 0 && (
               <span className="absolute -top-0.5 -right-0.5 h-5 min-w-5 bg-[var(--brand-pink-1)] text-[10px] font-display text-white flex items-center justify-center px-1">
                 {wishlist.length}
               </span>
             )}
-          </button>
+          </Link>
           {/* Friends */}
           <button
             onClick={toggleFriends}
-            className="relative p-2 hover:bg-primary/10 transition"
+            className={`${navBtn(false)}`}
             aria-label="Friends"
           >
             <img src={controllerIcon} alt="" className="pixel-img h-7 w-7" />
@@ -143,7 +152,7 @@ export default function Navbar() {
             </span>
           </button>
           {/* Library */}
-          <Link to="/library" className="relative p-2 hover:bg-primary/10 transition hidden sm:block" aria-label="Library">
+          <Link to="/library" className={`${navBtn(path === "/library")} hidden sm:block`} aria-label="Library">
             <img src={libraryIcon} alt="" className="pixel-img h-7 w-7" />
           </Link>
           {/* Cart */}
@@ -152,7 +161,7 @@ export default function Navbar() {
             animate={cartBounce > 0 ? { scale: [1, 1.25, 0.9, 1.1, 1], rotate: [0, -8, 8, -4, 0] } : {}}
             transition={{ duration: 0.5 }}
             key={cartBounce}
-            className="relative p-2 hover:bg-primary/10 transition group"
+            className={`${navBtn(false)} group`}
             aria-label="Cart"
           >
             <img src={cartIcon} alt="" className="pixel-img h-8 w-8" />
@@ -171,7 +180,7 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.button>
           {/* Settings */}
-          <Link to="/profile" className="hidden sm:flex p-2 hover:bg-primary/10 transition" aria-label="Settings">
+          <Link to="/profile" className={`${navBtn(path === "/profile")} hidden sm:flex`} aria-label="Settings">
             <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
           </Link>
           {/* Avatar → Profile */}
@@ -204,6 +213,15 @@ export default function Navbar() {
                   {c}
                 </Link>
               ))}
+              <Link to="/messages" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
+                Messages
+              </Link>
+              <Link to="/favorites" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
+                Wishlist
+              </Link>
+              <Link to="/library" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
+                Library
+              </Link>
               <Link to="/profile" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
                 Profile
               </Link>

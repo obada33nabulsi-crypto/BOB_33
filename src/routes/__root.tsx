@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import FriendsDrawer from "@/components/FriendsDrawer";
 import CartDrawer from "@/components/CartDrawer";
 import CheckoutModal from "@/components/CheckoutModal";
+import NexusAI from "@/components/NexusAI";
 
 import appCss from "../styles.css?url";
 
@@ -77,6 +78,7 @@ function RootComponent() {
           <FriendsDrawer />
           <CartDrawer />
           <CheckoutModal />
+          <NexusAI />
           <Toaster
             theme="dark"
             position="bottom-right"

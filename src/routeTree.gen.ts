@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as LibraryRouteImport } from './routes/library'
+import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GameIdRouteImport } from './routes/game.$id'
 
@@ -19,9 +21,19 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MessagesRoute = MessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LibraryRoute = LibraryRouteImport.update({
   id: '/library',
   path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,34 +49,55 @@ const GameIdRoute = GameIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
   '/game/$id': typeof GameIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
   '/game/$id': typeof GameIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
   '/game/$id': typeof GameIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/library' | '/profile' | '/game/$id'
+  fullPaths:
+    | '/'
+    | '/favorites'
+    | '/library'
+    | '/messages'
+    | '/profile'
+    | '/game/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/library' | '/profile' | '/game/$id'
-  id: '__root__' | '/' | '/library' | '/profile' | '/game/$id'
+  to: '/' | '/favorites' | '/library' | '/messages' | '/profile' | '/game/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/favorites'
+    | '/library'
+    | '/messages'
+    | '/profile'
+    | '/game/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FavoritesRoute: typeof FavoritesRoute
   LibraryRoute: typeof LibraryRoute
+  MessagesRoute: typeof MessagesRoute
   ProfileRoute: typeof ProfileRoute
   GameIdRoute: typeof GameIdRoute
 }
@@ -78,11 +111,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/messages': {
+      id: '/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/library': {
       id: '/library'
       path: '/library'
       fullPath: '/library'
       preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,10 +151,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FavoritesRoute: FavoritesRoute,
   LibraryRoute: LibraryRoute,
+  MessagesRoute: MessagesRoute,
   ProfileRoute: ProfileRoute,
   GameIdRoute: GameIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

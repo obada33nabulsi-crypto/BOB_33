@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Search, Check } from "lucide-react";
+import { X, Search, Check, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
+import { Link } from "@tanstack/react-router";
 import { useUI } from "@/store/ui";
 import { FRIENDS } from "@/lib/friends";
 
@@ -109,13 +110,24 @@ export default function FriendsDrawer() {
                         ▶ {f.game}
                       </div>
                     </div>
-                    <button
-                      onClick={() => toast.success(`Invite sent to ${f.username}`)}
-                      className="px-3 py-1.5 bg-primary text-primary-foreground font-display text-[9px] tracking-wider hover:translate-x-[-1px] hover:translate-y-[-1px] transition"
-                      style={{ boxShadow: "2px 2px 0 0 #1a1a1a" }}
-                    >
-                      INVITE
-                    </button>
+                    <div className="flex gap-1.5">
+                      <Link
+                        to="/messages"
+                        onClick={() => setFriendsOpen(false)}
+                        className="p-2 bg-secondary text-secondary-foreground hover:brightness-110 transition"
+                        style={{ boxShadow: "2px 2px 0 0 #1a1a1a" }}
+                        aria-label={`Message ${f.username}`}
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                      </Link>
+                      <button
+                        onClick={() => toast.success(`Invite sent to ${f.username}`)}
+                        className="px-3 py-1.5 bg-primary text-primary-foreground font-display text-[9px] tracking-wider hover:translate-x-[-1px] hover:translate-y-[-1px] transition"
+                        style={{ boxShadow: "2px 2px 0 0 #1a1a1a" }}
+                      >
+                        INVITE
+                      </button>
+                    </div>
                   </div>
                 ))}
 
@@ -138,13 +150,14 @@ export default function FriendsDrawer() {
                         {f.status === "online" ? `Playing ${f.game}` : f.lastOnline}
                       </div>
                     </div>
-                    <button
-                      onClick={() => toast.success(`Message sent to ${f.username}`)}
+                    <Link
+                      to="/messages"
+                      onClick={() => setFriendsOpen(false)}
                       className="px-3 py-1.5 bg-secondary text-secondary-foreground font-display text-[9px] tracking-wider"
                       style={{ boxShadow: "2px 2px 0 0 #1a1a1a" }}
                     >
                       MESSAGE
-                    </button>
+                    </Link>
                   </div>
                 ))}
 
