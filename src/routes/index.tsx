@@ -1,26 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ShopProvider } from "@/store/shop";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import FeaturedCarousel from "@/components/FeaturedCarousel";
+import CatalogGrid from "@/components/CatalogGrid";
+import CategoriesSection from "@/components/CategoriesSection";
+import SpecialOffer from "@/components/SpecialOffer";
+import NewReleases from "@/components/NewReleases";
+import Footer from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Umbrella — Premium Game Store" },
+      { name: "description", content: "Discover, collect, and play the next generation of AAA and indie games. Cinematic deals, daily drops, and exclusive releases." },
+      { property: "og:title", content: "Umbrella — Premium Game Store" },
+      { property: "og:description", content: "The cinematic destination for next-gen gaming." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <ShopProvider>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navbar />
+        <main>
+          <Hero />
+          <FeaturedCarousel />
+          <CatalogGrid />
+          <CategoriesSection />
+          <SpecialOffer />
+          <NewReleases />
+        </main>
+        <Footer />
+      </div>
+    </ShopProvider>
+  );
 }
