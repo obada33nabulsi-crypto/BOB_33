@@ -10,7 +10,7 @@ type PayMethod = "saved" | "new" | "wallet";
 
 export default function CheckoutModal() {
   const { checkoutOpen, setCheckoutOpen } = useUI();
-  const { cart, getGame, removeFromCart, clearCart } = useShop();
+  const { cart, getGame, removeFromCart, clearCart, addToLibrary } = useShop();
   const [step, setStep] = useState<Step>(1);
   const [pay, setPay] = useState<PayMethod>("saved");
   const [orderId, setOrderId] = useState<string>("");
@@ -30,7 +30,9 @@ export default function CheckoutModal() {
   };
 
   const goConfirm = () => {
-    setOrderId("UMB-" + Math.random().toString(36).slice(2, 8).toUpperCase());
+    const newOrderId = "UMB-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+    setOrderId(newOrderId);
+    addToLibrary(cart, newOrderId);
     setStep(3);
     setTimeout(() => clearCart(), 300);
   };
@@ -230,6 +232,8 @@ function Input({ label, placeholder, full }: { label: string; placeholder?: stri
 }
 
 function ConfirmStep({ orderId, onClose }: { orderId: string; onClose: () => void }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _ = orderId;
   // Generate confetti positions once
   const particles = useMemo(
     () =>
