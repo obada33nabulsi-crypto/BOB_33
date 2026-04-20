@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, CreditCard, Wallet, Trash2 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { useUI } from "@/store/ui";
 import { useShop } from "@/store/shop";
 import { priceAfterDiscount, type Game } from "@/lib/games";
