@@ -58,7 +58,7 @@ function GamePage() {
 
   const isWished = wishlist.includes(game.id);
   const finalPrice = priceAfterDiscount(game);
-  const similar = GAMES.filter((g) => g.id !== game.id).slice(0, 3);
+  const similar = GAMES.filter((g: typeof game) => g.id !== game.id).slice(0, 3);
 
   return (
     <motion.div

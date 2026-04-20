@@ -1,13 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ShopProvider } from "@/store/shop";
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import CatalogGrid from "@/components/CatalogGrid";
 import CategoriesSection from "@/components/CategoriesSection";
 import SpecialOffer from "@/components/SpecialOffer";
 import NewReleases from "@/components/NewReleases";
-import Footer from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,19 +20,13 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <ShopProvider>
-      <div className="min-h-screen bg-background text-foreground">
-        <Navbar />
-        <main>
-          <Hero />
-          <FeaturedCarousel />
-          <CatalogGrid />
-          <CategoriesSection />
-          <SpecialOffer />
-          <NewReleases />
-        </main>
-        <Footer />
-      </div>
-    </ShopProvider>
+    <>
+      <Hero />
+      <FeaturedCarousel />
+      <CatalogGrid />
+      <CategoriesSection />
+      <SpecialOffer />
+      <NewReleases />
+    </>
   );
 }
