@@ -15,14 +15,14 @@ export default function NewReleases() {
     <section className="container mx-auto px-4 lg:px-8 py-16">
       <div className="flex items-end justify-between mb-6">
         <div>
-          <div className="text-xs font-heading uppercase tracking-[0.3em] text-primary mb-2">Just Dropped</div>
-          <h2 className="font-display text-4xl md:text-5xl">New Releases</h2>
+          <div className="font-display text-[10px] tracking-[0.3em] text-[var(--brand-green-1)] mb-2">// JUST DROPPED</div>
+          <h2 className="font-display text-2xl md:text-4xl">NEW RELEASES</h2>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => scroll(-1)} className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-primary/50 transition">
+          <button onClick={() => scroll(-1)} className="h-10 w-10 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <button onClick={() => scroll(1)} className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-primary/50 transition">
+          <button onClick={() => scroll(1)} className="h-10 w-10 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
