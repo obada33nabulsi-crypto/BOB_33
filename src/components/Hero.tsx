@@ -100,7 +100,11 @@ export default function Hero() {
             className="flex flex-wrap items-center gap-4"
           >
             <button
-              onClick={() => { addToCart("cyber-odyssey"); toast.success("Cyber Odyssey added to cart"); }}
+              onClick={() => {
+                const added = addToCart("cyber-odyssey");
+                if (added) { bumpCart(); toast.success("Cyber Odyssey added to cart!"); }
+                else toast("Already in your cart!");
+              }}
               className="group relative inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
             >
               <img src={cartIcon} alt="" className="pixel-img h-5 w-5" />

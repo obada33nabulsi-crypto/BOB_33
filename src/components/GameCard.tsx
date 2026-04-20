@@ -3,12 +3,14 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useShop } from "@/store/shop";
+import { useUI } from "@/store/ui";
 import { priceAfterDiscount, type Game } from "@/lib/games";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
 
 export default function GameCard({ game }: { game: Game }) {
   const { addToCart, toggleWishlist, wishlist } = useShop();
+  const { bumpCart } = useUI();
   const isWished = wishlist.includes(game.id);
   const finalPrice = priceAfterDiscount(game);
 
