@@ -1,8 +1,10 @@
-import { Play, Plus, Star } from "lucide-react";
+import { Play, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { HERO_IMAGE } from "@/lib/games";
 import { useShop } from "@/store/shop";
+import cartIcon from "@/assets/icon-cart.png";
+import controllerIcon from "@/assets/icon-controller.png";
 
 export default function Hero() {
   const { addToCart } = useShop();
