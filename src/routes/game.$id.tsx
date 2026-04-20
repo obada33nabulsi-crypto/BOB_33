@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { GAMES, priceAfterDiscount, type Game } from "@/lib/games";
 import { SAMPLE_REVIEWS } from "@/lib/friends";
 import { useShop } from "@/store/shop";
+import { useUI } from "@/store/ui";
 import GameCard from "@/components/GameCard";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
@@ -52,6 +53,7 @@ const SCREEN_GRADIENTS = [
 function GamePage() {
   const { game } = Route.useLoaderData();
   const { addToCart, toggleWishlist, wishlist } = useShop();
+  const { bumpCart } = useUI();
   const [tab, setTab] = useState<Tab>("overview");
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [trailer, setTrailer] = useState(false);
@@ -120,7 +122,11 @@ function GamePage() {
                 <Play className="h-4 w-4 fill-current" /> WATCH TRAILER
               </button>
               <button
-                onClick={() => { addToCart(game.id); toast.success(`${game.title} added to cart`); }}
+                onClick={() => {
+                  const added = addToCart(game.id);
+                  if (added) { bumpCart(); toast.success(`${game.title} added to cart!`); }
+                  else toast("Already in your cart!");
+                }}
                 className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
               >
                 <img src={cartIcon} alt="" className="pixel-img h-5 w-5" />

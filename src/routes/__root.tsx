@@ -5,6 +5,8 @@ import { UIProvider } from "@/store/ui";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FriendsDrawer from "@/components/FriendsDrawer";
+import CartDrawer from "@/components/CartDrawer";
+import CheckoutModal from "@/components/CheckoutModal";
 
 import appCss from "../styles.css?url";
 
@@ -73,6 +75,8 @@ function RootComponent() {
           </main>
           <Footer />
           <FriendsDrawer />
+          <CartDrawer />
+          <CheckoutModal />
           <Toaster
             theme="dark"
             position="bottom-right"

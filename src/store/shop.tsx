@@ -4,9 +4,12 @@ import { GAMES, type Game } from "@/lib/games";
 type ShopCtx = {
   cart: string[];
   wishlist: string[];
-  addToCart: (id: string) => void;
+  /** Returns true if added, false if already in cart. */
+  addToCart: (id: string) => boolean;
   removeFromCart: (id: string) => void;
+  clearCart: () => void;
   toggleWishlist: (id: string) => void;
+  moveToWishlist: (id: string) => void;
   getGame: (id: string) => Game | undefined;
 };
 
@@ -19,10 +22,19 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const value: ShopCtx = {
     cart,
     wishlist,
-    addToCart: (id) => setCart((c) => (c.includes(id) ? c : [...c, id])),
+    addToCart: (id) => {
+      if (cart.includes(id)) return false;
+      setCart([...cart, id]);
+      return true;
+    },
     removeFromCart: (id) => setCart((c) => c.filter((x) => x !== id)),
+    clearCart: () => setCart([]),
     toggleWishlist: (id) =>
       setWishlist((w) => (w.includes(id) ? w.filter((x) => x !== id) : [...w, id])),
+    moveToWishlist: (id) => {
+      setCart((c) => c.filter((x) => x !== id));
+      setWishlist((w) => (w.includes(id) ? w : [...w, id]));
+    },
     getGame: (id) => GAMES.find((g) => g.id === id),
   };
 
