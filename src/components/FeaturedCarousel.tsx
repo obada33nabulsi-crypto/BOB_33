@@ -12,7 +12,7 @@ const SLIDES = GAMES.slice(0, 4);
 
 export default function FeaturedCarousel() {
   const [idx, setIdx] = useState(0);
-  const { addToCart, toggleWishlist, wishlist } = useShop();
+  const { toggleWishlist, wishlist } = useShop();
 
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 5500);

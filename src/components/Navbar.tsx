@@ -1,8 +1,10 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Search, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ChevronDown, Menu, X, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { GAMES } from "@/lib/games";
 import { useShop } from "@/store/shop";
+import { useUI } from "@/store/ui";
 import logoUrl from "@/assets/logo-umbrella.png";
 import cartIcon from "@/assets/icon-cart.png";
 import homeIcon from "@/assets/icon-home.png";
@@ -14,6 +16,7 @@ const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 
 export default function Navbar() {
   const { cart, wishlist } = useShop();
+  const { toggleFriends } = useUI();
   const [query, setQuery] = useState("");
   const [showCats, setShowCats] = useState(false);
   const [showMobile, setShowMobile] = useState(false);
@@ -37,10 +40,10 @@ export default function Navbar() {
     <header className="glass-strong sticky top-0 z-50">
       <div className="container mx-auto flex h-20 items-center gap-4 px-4 lg:px-8">
         {/* Logo */}
-        <a href="#top" className="flex items-center gap-3 shrink-0">
+        <Link to="/" className="flex items-center gap-3 shrink-0">
           <img src={homeIcon} alt="" className="pixel-img h-9 w-9" />
           <img src={logoUrl} alt="Umbrella" className="pixel-img h-8 md:h-10 w-auto" />
-        </a>
+        </Link>
 
         {/* Categories */}
         <div className="relative hidden lg:block ml-4" ref={catRef}>
@@ -59,14 +62,15 @@ export default function Navbar() {
                 className="absolute left-0 mt-2 w-56 glass pixel-border overflow-hidden"
               >
                 {CATEGORIES.map((c) => (
-                  <a
+                  <Link
                     key={c}
-                    href="#catalog"
+                    to="/"
+                    hash="catalog"
                     onClick={() => setShowCats(false)}
                     className="block px-4 py-2.5 font-heading text-lg hover:bg-primary hover:text-primary-foreground transition"
                   >
                     {c}
-                  </a>
+                  </Link>
                 ))}
               </motion.div>
             )}
@@ -82,7 +86,7 @@ export default function Navbar() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => setSearchFocused(true)}
-              onBlur={() => setTimeout(() => setSearchFocused(false), 150)}
+              onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
               placeholder="SEARCH GAMES..."
               className="w-full bg-transparent font-heading text-lg outline-none placeholder:text-muted-foreground"
             />
@@ -96,9 +100,11 @@ export default function Navbar() {
                 className="absolute left-0 right-0 mt-2 glass pixel-border overflow-hidden z-50"
               >
                 {suggestions.map((g) => (
-                  <a
+                  <Link
                     key={g.id}
-                    href="#catalog"
+                    to="/game/$id"
+                    params={{ id: g.id }}
+                    onClick={() => setQuery("")}
                     className="flex items-center gap-3 px-3 py-2 hover:bg-primary/20 transition"
                   >
                     <img src={g.cover} alt={g.title} className="h-10 w-10 object-cover border-2 border-border" />
@@ -107,7 +113,7 @@ export default function Navbar() {
                       <div className="text-xs text-muted-foreground">{g.genres.join(" · ")}</div>
                     </div>
                     <div className="font-heading text-lg text-primary">${g.price}</div>
-                  </a>
+                  </Link>
                 ))}
               </motion.div>
             )}
@@ -123,6 +129,17 @@ export default function Navbar() {
                 {wishlist.length}
               </span>
             )}
+          </button>
+          {/* Friends */}
+          <button
+            onClick={toggleFriends}
+            className="relative p-2 hover:bg-primary/10 transition"
+            aria-label="Friends"
+          >
+            <Users className="h-6 w-6 text-foreground" />
+            <span className="absolute -top-0.5 -right-0.5 h-5 min-w-5 bg-[var(--brand-green-1)] text-[10px] font-display text-[var(--gray-deep)] flex items-center justify-center px-1">
+              3
+            </span>
           </button>
           {/* Library */}
           <button className="relative p-2 hover:bg-primary/10 transition hidden sm:block" aria-label="Library">
@@ -146,9 +163,18 @@ export default function Navbar() {
             </AnimatePresence>
           </button>
           {/* Settings */}
-          <button className="hidden sm:flex p-2 hover:bg-primary/10 transition" aria-label="Settings">
+          <Link to="/profile" className="hidden sm:flex p-2 hover:bg-primary/10 transition" aria-label="Settings">
             <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
-          </button>
+          </Link>
+          {/* Avatar → Profile */}
+          <Link
+            to="/profile"
+            className="h-10 w-10 flex items-center justify-center font-display text-[10px] text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
+            style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
+            aria-label="Profile"
+          >
+            PS
+          </Link>
           <button onClick={() => setShowMobile((s) => !s)} className="lg:hidden p-2">
             {showMobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -166,10 +192,13 @@ export default function Navbar() {
           >
             <div className="px-4 py-3 space-y-1">
               {CATEGORIES.map((c) => (
-                <a key={c} href="#catalog" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
+                <Link key={c} to="/" hash="catalog" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
                   {c}
-                </a>
+                </Link>
               ))}
+              <Link to="/profile" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
+                Profile
+              </Link>
             </div>
           </motion.div>
         )}
