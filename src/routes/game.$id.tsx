@@ -87,7 +87,7 @@ function GamePage() {
 
           <div className="max-w-2xl pt-12">
             <div className="flex flex-wrap gap-2 mb-4">
-              {game.genres.map((g) => (
+              {game.genres.map((g: string) => (
                 <span key={g} className="px-2 py-1 bg-secondary text-secondary-foreground font-display text-[10px] tracking-wider">
                   {g.toUpperCase()}
                 </span>
