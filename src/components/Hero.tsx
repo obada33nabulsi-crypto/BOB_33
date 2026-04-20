@@ -1,6 +1,8 @@
 import { Play, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { toast } from "sonner";
 import { HERO_IMAGE } from "@/lib/games";
 import { useShop } from "@/store/shop";
 import cartIcon from "@/assets/icon-cart.png";
@@ -96,7 +98,7 @@ export default function Hero() {
             className="flex flex-wrap items-center gap-4"
           >
             <button
-              onClick={() => addToCart("cyber-odyssey")}
+              onClick={() => { addToCart("cyber-odyssey"); toast.success("Cyber Odyssey added to cart"); }}
               className="group relative inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
             >
               <img src={cartIcon} alt="" className="pixel-img h-5 w-5" />
@@ -104,9 +106,9 @@ export default function Hero() {
               <span className="ml-2 px-2 py-1 bg-[var(--gray-deep)]/40 text-[10px]">$23.99</span>
               <span className="text-[10px] line-through opacity-60">$59.99</span>
             </button>
-            <button className="inline-flex items-center gap-2 px-6 py-3 glass pixel-border text-foreground font-display text-xs tracking-wider hover:border-primary transition">
+            <Link to="/game/$id" params={{ id: "cyber-odyssey" }} className="inline-flex items-center gap-2 px-6 py-3 glass pixel-border text-foreground font-display text-xs tracking-wider hover:border-primary transition">
               <Play className="h-4 w-4 fill-current" /> WATCH TRAILER
-            </button>
+            </Link>
           </motion.div>
         </div>
       </div>

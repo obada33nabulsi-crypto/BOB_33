@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { toast } from "sonner";
 import { GAMES, priceAfterDiscount } from "@/lib/games";
 import { useShop } from "@/store/shop";
 import cartIcon from "@/assets/icon-cart.png";
@@ -10,7 +12,7 @@ const SLIDES = GAMES.slice(0, 4);
 
 export default function FeaturedCarousel() {
   const [idx, setIdx] = useState(0);
-  const { addToCart, toggleWishlist, wishlist } = useShop();
+  const { toggleWishlist, wishlist } = useShop();
 
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 5500);
@@ -58,7 +60,9 @@ export default function FeaturedCarousel() {
                   -{game.discount}% LIMITED
                 </div>
               )}
-              <h3 className="font-display text-3xl md:text-5xl mb-4 text-gradient-pink leading-tight">{game.title}</h3>
+              <Link to="/game/$id" params={{ id: game.id }}>
+                <h3 className="font-display text-3xl md:text-5xl mb-4 text-gradient-pink leading-tight hover:opacity-90 transition">{game.title}</h3>
+              </Link>
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-[var(--brand-green-1)] text-[var(--brand-green-1)]" />
@@ -68,10 +72,10 @@ export default function FeaturedCarousel() {
               </div>
               <p className="font-heading text-xl text-foreground/80 mb-6 max-w-md leading-tight">{game.description}</p>
               <div className="flex items-center gap-3">
-                <button onClick={() => addToCart(game.id)} className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform">
+                <Link to="/game/$id" params={{ id: game.id }} className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform">
                   <img src={cartIcon} alt="" className="pixel-img h-5 w-5" /> ${priceAfterDiscount(game)}
-                </button>
-                <button onClick={() => toggleWishlist(game.id)} className="h-12 w-12 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
+                </Link>
+                <button onClick={() => { toggleWishlist(game.id); toast(isWished ? "Removed from wishlist" : "Added to wishlist"); }} className="h-12 w-12 bg-card border-2 border-border flex items-center justify-center hover:border-primary transition">
                   <img src={heartIcon} alt="" className={`pixel-img h-5 w-5 ${isWished ? "opacity-100" : "opacity-40 grayscale"}`} />
                 </button>
               </div>
