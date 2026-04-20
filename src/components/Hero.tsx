@@ -5,11 +5,13 @@ import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { HERO_IMAGE } from "@/lib/games";
 import { useShop } from "@/store/shop";
+import { useUI } from "@/store/ui";
 import cartIcon from "@/assets/icon-cart.png";
 import controllerIcon from "@/assets/icon-controller.png";
 
 export default function Hero() {
   const { addToCart } = useShop();
+  const { bumpCart } = useUI();
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
