@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react";
 import trophyIcon from "@/assets/icon-trophy.png";
 
-function useCountdown(target: number) {
-  const [now, setNow] = useState(Date.now());
+const INITIAL = { h: 23, m: 47, s: 0 };
+
+function useCountdown() {
+  const [time, setTime] = useState(INITIAL);
   useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 1000);
+    const target = Date.now() + 1000 * 60 * 60 * 23 + 1000 * 60 * 47;
+    const tick = () => {
+      const diff = Math.max(0, target - Date.now());
+      setTime({
+        h: Math.floor(diff / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const t = setInterval(tick, 1000);
     return () => clearInterval(t);
   }, []);
-  const diff = Math.max(0, target - now);
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  return { h, m, s };
+  return time;
 }
 
 export default function SpecialOffer() {
-  const target = useState(() => Date.now() + 1000 * 60 * 60 * 23 + 1000 * 60 * 47)[0];
-  const { h, m, s } = useCountdown(target);
+  const { h, m, s } = useCountdown();
 
   const cells = [
     { l: "HOURS", v: h },
