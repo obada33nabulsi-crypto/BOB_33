@@ -2,7 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Bebas+Neue&family=Nunito:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -34,48 +34,68 @@
   --color-neon-purple: var(--neon-purple);
   --color-neon-pink: var(--neon-pink);
   --color-success: var(--success);
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-heading: 'Rajdhani', sans-serif;
-  --font-body: 'Nunito', sans-serif;
+  --font-display: 'Press Start 2P', monospace;
+  --font-heading: 'VT323', monospace;
+  --font-body: 'Space Grotesk', sans-serif;
 }
 
 :root {
-  --radius: 0.5rem;
-  /* Cinematic dark gaming palette */
-  --background: oklch(0.13 0.02 270);          /* #0a0a0f-ish */
-  --foreground: oklch(0.97 0.01 250);
-  --card: oklch(0.18 0.03 265);                 /* midnight */
-  --card-foreground: oklch(0.97 0.01 250);
-  --popover: oklch(0.16 0.03 265);
-  --popover-foreground: oklch(0.97 0.01 250);
-  --primary: oklch(0.78 0.18 200);              /* electric cyan #00f5ff */
-  --primary-foreground: oklch(0.13 0.02 270);
-  --secondary: oklch(0.22 0.04 270);
-  --secondary-foreground: oklch(0.97 0.01 250);
-  --muted: oklch(0.22 0.03 270);
-  --muted-foreground: oklch(0.7 0.03 260);
-  --accent: oklch(0.55 0.25 295);               /* neon purple #7c3aed */
-  --accent-foreground: oklch(0.98 0.01 250);
-  --destructive: oklch(0.62 0.25 25);
-  --destructive-foreground: oklch(0.98 0.01 250);
-  --border: oklch(0.28 0.04 270 / 60%);
-  --input: oklch(0.22 0.04 270);
-  --ring: oklch(0.78 0.18 200);
+  --radius: 0.25rem;
+  /* Pixel arcade palette — grays, magenta/pink, purple, neon green */
+  --background: #353535;
+  --foreground: #e5e5e5;
+  --card: #2a2a2a;
+  --card-foreground: #e5e5e5;
+  --popover: #2a2a2a;
+  --popover-foreground: #e5e5e5;
+  --primary: #ea34a9;                  /* magenta */
+  --primary-foreground: #ffffff;
+  --secondary: #7e5ecc;                /* purple */
+  --secondary-foreground: #ffffff;
+  --muted: #4a4a4a;
+  --muted-foreground: #828282;
+  --accent: #64ff00;                   /* neon green */
+  --accent-foreground: #353535;
+  --destructive: #df158c;
+  --destructive-foreground: #ffffff;
+  --border: #4a4a4a;
+  --input: #2a2a2a;
+  --ring: #ea34a9;
 
-  --neon-cyan: oklch(0.85 0.18 200);
-  --neon-purple: oklch(0.6 0.27 300);
-  --neon-pink: oklch(0.7 0.28 350);
-  --success: oklch(0.7 0.2 145);
+  /* Brand spectrum tokens */
+  --brand-pink-1: #df158c;
+  --brand-pink-2: #ea34a9;
+  --brand-pink-3: #f453bb;
+  --brand-magenta-1: #ea34a9;
+  --brand-magenta-2: #aa4faf;
+  --brand-magenta-3: #d97ee0;
+  --brand-purple-1: #d97ee0;
+  --brand-purple-2: #7e5ecc;
+  --brand-purple-3: #a88fe5;
+  --brand-green-1: #64ff00;
+  --brand-green-2: #98ff55;
+  --brand-green-3: #daffc2;
+  --gray-deep: #353535;
+  --gray-mid: #828282;
+  --gray-light: #e5e5e5;
 
-  --gradient-hero: linear-gradient(135deg, oklch(0.13 0.02 270) 0%, oklch(0.18 0.06 280) 50%, oklch(0.13 0.02 270) 100%);
-  --gradient-neon: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-  --gradient-card: linear-gradient(180deg, oklch(0.2 0.04 270 / 80%), oklch(0.13 0.02 270 / 95%));
-  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.78 0.18 200 / 30%), transparent 70%);
+  --success: var(--brand-green-1);
 
-  --shadow-neon-cyan: 0 0 20px oklch(0.78 0.18 200 / 50%), 0 0 40px oklch(0.78 0.18 200 / 25%);
-  --shadow-neon-purple: 0 0 20px oklch(0.6 0.27 300 / 50%), 0 0 40px oklch(0.6 0.27 300 / 25%);
-  --shadow-card: 0 8px 32px oklch(0 0 0 / 60%);
-  --shadow-card-hover: 0 20px 60px oklch(0.78 0.18 200 / 30%);
+  --gradient-hero: linear-gradient(135deg, #353535 0%, #2a1a35 50%, #353535 100%);
+  --gradient-neon: linear-gradient(135deg, #ea34a9 0%, #aa4faf 50%, #7e5ecc 100%);
+  --gradient-pink: linear-gradient(135deg, #df158c, #f453bb);
+  --gradient-purple: linear-gradient(135deg, #7e5ecc, #d97ee0);
+  --gradient-green: linear-gradient(135deg, #64ff00, #98ff55);
+  --gradient-card: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(234, 52, 169, 0.35), transparent 70%);
+
+  --shadow-neon-pink: 0 0 0 2px #ea34a9, 4px 4px 0 0 #df158c;
+  --shadow-neon-purple: 0 0 0 2px #7e5ecc, 4px 4px 0 0 #d97ee0;
+  --shadow-neon-green: 0 0 0 2px #64ff00, 4px 4px 0 0 #98ff55;
+  --shadow-pixel: 4px 4px 0 0 #1a1a1a;
+  --shadow-pixel-lg: 8px 8px 0 0 #1a1a1a;
+  --shadow-card: 6px 6px 0 0 rgba(0,0,0,0.5);
+  --shadow-card-hover: 8px 8px 0 0 #ea34a9;
 }
 
 .dark {
@@ -91,47 +111,61 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
-    background-image: 
-      radial-gradient(ellipse at top, oklch(0.55 0.25 295 / 8%), transparent 50%),
-      radial-gradient(ellipse at bottom, oklch(0.78 0.18 200 / 6%), transparent 50%);
+    background-image:
+      linear-gradient(rgba(234,52,169,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(126,94,204,0.04) 1px, transparent 1px),
+      radial-gradient(ellipse at top, rgba(234,52,169,0.12), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(100,255,0,0.06), transparent 60%);
+    background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
     background-attachment: fixed;
   }
-  h1,h2,h3,h4 { font-family: var(--font-heading); letter-spacing: 0.01em; }
+  h1,h2,h3,h4 { font-family: var(--font-heading); letter-spacing: 0.03em; }
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); letter-spacing: 0.04em; }
-  .font-heading { font-family: var(--font-heading); }
+  .font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
+  .font-heading { font-family: var(--font-heading); letter-spacing: 0.05em; }
+  .font-pixel { font-family: var(--font-display); image-rendering: pixelated; }
   .text-gradient-neon {
     background: var(--gradient-neon);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+  .text-gradient-pink {
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .pixel-img { image-rendering: pixelated; image-rendering: crisp-edges; }
   .glass {
-    background: oklch(0.18 0.03 265 / 60%);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid oklch(1 0 0 / 8%);
+    background: rgba(42, 42, 42, 0.85);
+    border: 2px solid #4a4a4a;
   }
   .glass-strong {
-    background: oklch(0.13 0.02 270 / 85%);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border-bottom: 1px solid oklch(1 0 0 / 6%);
+    background: #2a2a2a;
+    border-bottom: 2px solid #ea34a9;
   }
-  .neon-border {
-    box-shadow: 0 0 0 1px var(--neon-cyan), 0 0 20px oklch(0.78 0.18 200 / 40%);
+  .pixel-border {
+    border: 2px solid #1a1a1a;
+    box-shadow: var(--shadow-pixel);
   }
-  .glow-cyan { box-shadow: var(--shadow-neon-cyan); }
+  .pixel-border-pink { box-shadow: var(--shadow-neon-pink); }
+  .pixel-border-purple { box-shadow: var(--shadow-neon-purple); }
+  .pixel-border-green { box-shadow: var(--shadow-neon-green); }
+  .glow-cyan { box-shadow: var(--shadow-neon-pink); }
   .glow-purple { box-shadow: var(--shadow-neon-purple); }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scanlines {
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 2px, transparent 2px, transparent 4px);
+  }
 }
 
 @keyframes pulse-neon {
-  0%, 100% { box-shadow: 0 0 20px oklch(0.78 0.18 200 / 50%), 0 0 40px oklch(0.78 0.18 200 / 25%); }
-  50% { box-shadow: 0 0 35px oklch(0.78 0.18 200 / 80%), 0 0 70px oklch(0.6 0.27 300 / 50%); }
+  0%, 100% { box-shadow: 0 0 0 2px #ea34a9, 4px 4px 0 0 #df158c; }
+  50% { box-shadow: 0 0 0 2px #f453bb, 6px 6px 0 0 #ea34a9, 0 0 20px rgba(234,52,169,0.6); }
 }
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px); }
