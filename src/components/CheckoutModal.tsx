@@ -279,12 +279,13 @@ function ConfirmStep({ orderId, onClose }: { orderId: string; onClose: () => voi
       </p>
 
       <div className="flex flex-wrap items-center justify-center gap-3">
-        <button
+        <Link
+          to="/library"
           onClick={onClose}
           className="px-5 py-3 bg-primary text-primary-foreground font-display text-[10px] tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
         >
           GO TO LIBRARY
-        </button>
+        </Link>
         <button
           onClick={onClose}
           className="px-5 py-3 glass pixel-border font-display text-[10px] tracking-wider hover:border-primary"
