@@ -891,13 +891,12 @@ function StepTechnical({
     const f = e.target.files?.[0];
     if (!f) return;
     update("buildFile", { name: f.name, size: f.size });
+    let p = 0;
     setUploadProgress(0);
     const interval = setInterval(() => {
-      setUploadProgress((p) => {
-        const next = Math.min(100, p + 7 + Math.random() * 10);
-        if (next >= 100) clearInterval(interval);
-        return next;
-      });
+      p = Math.min(100, p + 7 + Math.random() * 10);
+      setUploadProgress(p);
+      if (p >= 100) clearInterval(interval);
     }, 200);
   }
 
