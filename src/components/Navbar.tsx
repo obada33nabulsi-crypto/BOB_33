@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Search, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ChevronDown, Menu, X, Upload } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "@tanstack/react-router";
 import { GAMES } from "@/lib/games";
@@ -127,6 +127,24 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
+          {/* Publish your game */}
+          <Link
+            to="/developer/publish"
+            className={`hidden md:inline-flex items-center gap-1.5 px-3 py-2 border-2 font-display text-[10px] tracking-wider transition ${
+              path.startsWith("/developer")
+                ? "border-primary text-primary bg-primary/10"
+                : "border-border hover:border-primary text-muted-foreground hover:text-primary"
+            }`}
+          >
+            <Upload className="h-3 w-3" /> PUBLISH
+          </Link>
+          <Link
+            to="/developer/publish"
+            className={`${navBtn(path.startsWith("/developer"))} md:hidden`}
+            aria-label="Publish your game"
+          >
+            <Upload className="h-5 w-5" />
+          </Link>
           {/* Messages */}
           <Link to="/messages" className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages">
             <img src={controllerIcon} alt="" className="pixel-img h-7 w-7" />
@@ -224,6 +242,9 @@ export default function Navbar() {
               </Link>
               <Link to="/profile" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
                 Profile
+              </Link>
+              <Link to="/developer/publish" onClick={() => setShowMobile(false)} className="block py-2 font-heading text-xl uppercase hover:text-primary">
+                Publish Your Game
               </Link>
             </div>
           </motion.div>

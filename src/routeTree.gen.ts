@@ -15,6 +15,8 @@ import { Route as LibraryRouteImport } from './routes/library'
 import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GameIdRouteImport } from './routes/game.$id'
+import { Route as DeveloperPublishRouteImport } from './routes/developer.publish'
+import { Route as DeveloperDashboardRouteImport } from './routes/developer.dashboard'
 
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
@@ -46,6 +48,16 @@ const GameIdRoute = GameIdRouteImport.update({
   path: '/game/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeveloperPublishRoute = DeveloperPublishRouteImport.update({
+  id: '/developer/publish',
+  path: '/developer/publish',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeveloperDashboardRoute = DeveloperDashboardRouteImport.update({
+  id: '/developer/dashboard',
+  path: '/developer/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,6 +65,8 @@ export interface FileRoutesByFullPath {
   '/library': typeof LibraryRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/developer/dashboard': typeof DeveloperDashboardRoute
+  '/developer/publish': typeof DeveloperPublishRoute
   '/game/$id': typeof GameIdRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +75,8 @@ export interface FileRoutesByTo {
   '/library': typeof LibraryRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/developer/dashboard': typeof DeveloperDashboardRoute
+  '/developer/publish': typeof DeveloperPublishRoute
   '/game/$id': typeof GameIdRoute
 }
 export interface FileRoutesById {
@@ -70,6 +86,8 @@ export interface FileRoutesById {
   '/library': typeof LibraryRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/developer/dashboard': typeof DeveloperDashboardRoute
+  '/developer/publish': typeof DeveloperPublishRoute
   '/game/$id': typeof GameIdRoute
 }
 export interface FileRouteTypes {
@@ -80,9 +98,19 @@ export interface FileRouteTypes {
     | '/library'
     | '/messages'
     | '/profile'
+    | '/developer/dashboard'
+    | '/developer/publish'
     | '/game/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/favorites' | '/library' | '/messages' | '/profile' | '/game/$id'
+  to:
+    | '/'
+    | '/favorites'
+    | '/library'
+    | '/messages'
+    | '/profile'
+    | '/developer/dashboard'
+    | '/developer/publish'
+    | '/game/$id'
   id:
     | '__root__'
     | '/'
@@ -90,6 +118,8 @@ export interface FileRouteTypes {
     | '/library'
     | '/messages'
     | '/profile'
+    | '/developer/dashboard'
+    | '/developer/publish'
     | '/game/$id'
   fileRoutesById: FileRoutesById
 }
@@ -99,6 +129,8 @@ export interface RootRouteChildren {
   LibraryRoute: typeof LibraryRoute
   MessagesRoute: typeof MessagesRoute
   ProfileRoute: typeof ProfileRoute
+  DeveloperDashboardRoute: typeof DeveloperDashboardRoute
+  DeveloperPublishRoute: typeof DeveloperPublishRoute
   GameIdRoute: typeof GameIdRoute
 }
 
@@ -146,6 +178,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GameIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/developer/publish': {
+      id: '/developer/publish'
+      path: '/developer/publish'
+      fullPath: '/developer/publish'
+      preLoaderRoute: typeof DeveloperPublishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/developer/dashboard': {
+      id: '/developer/dashboard'
+      path: '/developer/dashboard'
+      fullPath: '/developer/dashboard'
+      preLoaderRoute: typeof DeveloperDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -155,6 +201,8 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryRoute: LibraryRoute,
   MessagesRoute: MessagesRoute,
   ProfileRoute: ProfileRoute,
+  DeveloperDashboardRoute: DeveloperDashboardRoute,
+  DeveloperPublishRoute: DeveloperPublishRoute,
   GameIdRoute: GameIdRoute,
 }
 export const routeTree = rootRouteImport
