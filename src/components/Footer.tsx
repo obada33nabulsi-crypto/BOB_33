@@ -1,5 +1,6 @@
-import { Twitter, Github, Twitch, Youtube } from "lucide-react";
+import { Twitter, Github, Twitch, Youtube, Upload } from "lucide-react";
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import logoUrl from "@/assets/logo-umbrella.png";
 import controllerIcon from "@/assets/icon-controller.png";
 
@@ -9,7 +10,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-16 border-t-2 border-primary">
-      <div className="container mx-auto px-4 lg:px-8 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container mx-auto px-4 lg:px-8 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-5">
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img src={controllerIcon} alt="" className="pixel-img h-9 w-9" />
@@ -40,6 +41,24 @@ export default function Footer() {
             </ul>
           </div>
         ))}
+
+        <div>
+          <h4 className="font-display text-xs tracking-widest text-primary mb-4">DEVELOPERS</h4>
+          <ul className="space-y-2 font-heading text-xl text-muted-foreground">
+            <li>
+              <Link to="/developer/publish" className="inline-flex items-center gap-1 hover:text-primary transition">
+                <Upload className="h-3 w-3" /> Publish Your Game
+              </Link>
+            </li>
+            <li>
+              <Link to="/developer/dashboard" className="hover:text-primary transition">
+                Developer Dashboard
+              </Link>
+            </li>
+            <li><a href="#" className="hover:text-primary transition">Documentation</a></li>
+            <li><a href="#" className="hover:text-primary transition">Revenue Share</a></li>
+          </ul>
+        </div>
 
         <div>
           <h4 className="font-display text-xs tracking-widest text-primary mb-4">NEWSLETTER</h4>
