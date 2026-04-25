@@ -200,21 +200,7 @@ function GamePage() {
               )}
 
               {tab === "screenshots" && (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {SCREEN_GRADIENTS.map((bg, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setLightbox(i)}
-                      className="group aspect-video border-2 border-border overflow-hidden relative hover:border-primary transition"
-                      style={{ background: bg, boxShadow: "3px 3px 0 0 #1a1a1a" }}
-                    >
-                      <div className="absolute inset-0 scanlines opacity-30" />
-                      <div className="absolute inset-0 flex items-center justify-center font-display text-xs text-white/80 opacity-0 group-hover:opacity-100 transition">
-                        VIEW {i + 1}
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                <ScreenshotsGallery gameId={game.id} title={game.title} />
               )}
 
               {tab === "patches" && <PatchNotesTab gameId={game.id} />}
