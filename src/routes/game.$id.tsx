@@ -24,6 +24,7 @@ import { getCommunity, ratingSummary, type PatchType, type Review } from "@/lib/
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import GameCard from "@/components/GameCard";
+import ScreenshotsGallery from "@/components/ScreenshotsGallery";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
 
