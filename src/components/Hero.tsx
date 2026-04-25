@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { HERO_IMAGE } from "@/lib/games";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
+import TrailerModal from "@/components/TrailerModal";
 import cartIcon from "@/assets/icon-cart.png";
 import controllerIcon from "@/assets/icon-controller.png";
 
@@ -13,6 +14,7 @@ export default function Hero() {
   const { addToCart } = useShop();
   const { bumpCart } = useUI();
   const [scrollY, setScrollY] = useState(0);
+  const [trailerOpen, setTrailerOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -112,15 +114,21 @@ export default function Hero() {
               <span className="ml-2 px-2 py-1 bg-[var(--gray-deep)]/40 text-[10px]">$23.99</span>
               <span className="text-[10px] line-through opacity-60">$59.99</span>
             </button>
-            <Link to="/game/$id" params={{ id: "cyber-odyssey" }} className="inline-flex items-center gap-2 px-6 py-3 glass pixel-border text-foreground font-display text-xs tracking-wider hover:border-primary transition">
+            <button
+              onClick={() => setTrailerOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 glass pixel-border text-foreground font-display text-xs tracking-wider hover:border-primary transition"
+              style={{ boxShadow: "0 0 24px rgba(0,245,255,0.35)" }}
+            >
               <Play className="h-4 w-4 fill-current" /> WATCH TRAILER
-            </Link>
+            </button>
           </motion.div>
         </div>
       </div>
 
       {/* Bottom fade */}
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+
+      <TrailerModal open={trailerOpen} onClose={() => setTrailerOpen(false)} gameId="cyber-odyssey" />
     </section>
   );
 }
