@@ -1,16 +1,19 @@
-import { Star } from "lucide-react";
+import { Star, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { useState } from "react";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import { priceAfterDiscount, type Game } from "@/lib/games";
+import TrailerModal from "@/components/TrailerModal";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
 
 export default function GameCard({ game }: { game: Game }) {
   const { addToCart, toggleWishlist, wishlist } = useShop();
   const { bumpCart } = useUI();
+  const [trailerOpen, setTrailerOpen] = useState(false);
   const isWished = wishlist.includes(game.id);
   const finalPrice = priceAfterDiscount(game);
 
@@ -59,6 +62,20 @@ export default function GameCard({ game }: { game: Game }) {
             <img src={heartIcon} alt="" className={`pixel-img h-5 w-5 transition ${isWished ? "opacity-100" : "opacity-40 grayscale"}`} />
           </button>
 
+          {/* Hover trailer play */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setTrailerOpen(true);
+            }}
+            title="Watch Trailer"
+            aria-label="Watch trailer"
+            className="absolute top-3 right-16 h-10 w-10 bg-card/80 border-2 border-border flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-primary hover:scale-110 transition"
+          >
+            <Play className="h-4 w-4 fill-primary text-primary" />
+          </button>
+
           <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-background via-background/80 to-transparent">
             <p className="font-heading text-lg text-foreground/90 mb-3 line-clamp-2 leading-tight">{game.description}</p>
             <button
@@ -103,6 +120,7 @@ export default function GameCard({ game }: { game: Game }) {
           </div>
         </div>
       </Link>
+      <TrailerModal open={trailerOpen} onClose={() => setTrailerOpen(false)} gameId={game.id} />
     </motion.div>
   );
 }
