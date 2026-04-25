@@ -25,6 +25,7 @@ import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import GameCard from "@/components/GameCard";
 import ScreenshotsGallery from "@/components/ScreenshotsGallery";
+import TrailerModal from "@/components/TrailerModal";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
 
@@ -259,41 +260,7 @@ function GamePage() {
         </aside>
       </section>
 
-      {/* Trailer modal */}
-      <AnimatePresence>
-        {trailer && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setTrailer(false)}
-            className="fixed inset-0 bg-background/90 z-[100] flex items-center justify-center p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl aspect-video bg-card border-2 border-primary"
-              style={{ boxShadow: "8px 8px 0 0 #1a1a1a" }}
-            >
-              <button
-                onClick={() => setTrailer(false)}
-                className="absolute -top-12 right-0 p-2 bg-card border-2 border-border hover:border-primary"
-                aria-label="Close trailer"
-              >
-                <X className="h-5 w-5" />
-              </button>
-              <div className="h-full w-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}>
-                <div className="text-center">
-                  <Play className="h-16 w-16 mx-auto mb-3 fill-white text-white" />
-                  <div className="font-display text-sm text-white">TRAILER PLACEHOLDER</div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <TrailerModal open={trailer} onClose={() => setTrailer(false)} gameId={game.id} />
 
     </motion.div>
   );
