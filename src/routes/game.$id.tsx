@@ -58,15 +58,6 @@ export const Route = createFileRoute("/game/$id")({
 
 type Tab = "overview" | "screenshots" | "patches" | "specs" | "reviews";
 
-const SCREEN_GRADIENTS = [
-  "linear-gradient(135deg, #ea34a9, #7e5ecc)",
-  "linear-gradient(135deg, #7e5ecc, #d97ee0)",
-  "linear-gradient(135deg, #df158c, #f453bb)",
-  "linear-gradient(135deg, #64ff00, #98ff55)",
-  "linear-gradient(135deg, #aa4faf, #ea34a9)",
-  "linear-gradient(135deg, #353535, #7e5ecc)",
-];
-
 function GamePage() {
   const { game } = Route.useLoaderData();
   const { addToCart, toggleWishlist, wishlist, library } = useShop();
