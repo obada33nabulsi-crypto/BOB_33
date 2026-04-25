@@ -295,38 +295,6 @@ function GamePage() {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-background/95 z-[100] flex items-center justify-center p-4"
-          >
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-6 right-6 p-2 bg-card border-2 border-border hover:border-primary z-10"
-              aria-label="Close"
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-5xl aspect-video border-2 border-primary"
-              style={{ background: SCREEN_GRADIENTS[lightbox], boxShadow: "8px 8px 0 0 #1a1a1a" }}
-            >
-              <div className="h-full w-full scanlines flex items-center justify-center font-display text-sm text-white/80">
-                SCREENSHOT {lightbox + 1}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 }
