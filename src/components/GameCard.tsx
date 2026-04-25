@@ -120,6 +120,7 @@ export default function GameCard({ game }: { game: Game }) {
           </div>
         </div>
       </Link>
+      <TrailerModal open={trailerOpen} onClose={() => setTrailerOpen(false)} gameId={game.id} />
     </motion.div>
   );
 }
