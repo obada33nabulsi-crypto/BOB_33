@@ -24,6 +24,7 @@ import { getCommunity, ratingSummary, type PatchType, type Review } from "@/lib/
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import GameCard from "@/components/GameCard";
+import ScreenshotsGallery from "@/components/ScreenshotsGallery";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
 
@@ -57,21 +58,11 @@ export const Route = createFileRoute("/game/$id")({
 
 type Tab = "overview" | "screenshots" | "patches" | "specs" | "reviews";
 
-const SCREEN_GRADIENTS = [
-  "linear-gradient(135deg, #ea34a9, #7e5ecc)",
-  "linear-gradient(135deg, #7e5ecc, #d97ee0)",
-  "linear-gradient(135deg, #df158c, #f453bb)",
-  "linear-gradient(135deg, #64ff00, #98ff55)",
-  "linear-gradient(135deg, #aa4faf, #ea34a9)",
-  "linear-gradient(135deg, #353535, #7e5ecc)",
-];
-
 function GamePage() {
   const { game } = Route.useLoaderData();
   const { addToCart, toggleWishlist, wishlist, library } = useShop();
   const { bumpCart } = useUI();
   const [tab, setTab] = useState<Tab>("overview");
-  const [lightbox, setLightbox] = useState<number | null>(null);
   const [trailer, setTrailer] = useState(false);
 
   const isWished = wishlist.includes(game.id);
@@ -209,21 +200,7 @@ function GamePage() {
               )}
 
               {tab === "screenshots" && (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {SCREEN_GRADIENTS.map((bg, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setLightbox(i)}
-                      className="group aspect-video border-2 border-border overflow-hidden relative hover:border-primary transition"
-                      style={{ background: bg, boxShadow: "3px 3px 0 0 #1a1a1a" }}
-                    >
-                      <div className="absolute inset-0 scanlines opacity-30" />
-                      <div className="absolute inset-0 flex items-center justify-center font-display text-xs text-white/80 opacity-0 group-hover:opacity-100 transition">
-                        VIEW {i + 1}
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                <ScreenshotsGallery gameId={game.id} title={game.title} />
               )}
 
               {tab === "patches" && <PatchNotesTab gameId={game.id} />}
@@ -318,38 +295,6 @@ function GamePage() {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-background/95 z-[100] flex items-center justify-center p-4"
-          >
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-6 right-6 p-2 bg-card border-2 border-border hover:border-primary z-10"
-              aria-label="Close"
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-5xl aspect-video border-2 border-primary"
-              style={{ background: SCREEN_GRADIENTS[lightbox], boxShadow: "8px 8px 0 0 #1a1a1a" }}
-            >
-              <div className="h-full w-full scanlines flex items-center justify-center font-display text-sm text-white/80">
-                SCREENSHOT {lightbox + 1}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 }
