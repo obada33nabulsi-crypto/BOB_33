@@ -63,7 +63,6 @@ function GamePage() {
   const { addToCart, toggleWishlist, wishlist, library } = useShop();
   const { bumpCart } = useUI();
   const [tab, setTab] = useState<Tab>("overview");
-  const [lightbox, setLightbox] = useState<number | null>(null);
   const [trailer, setTrailer] = useState(false);
 
   const isWished = wishlist.includes(game.id);
