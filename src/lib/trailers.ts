@@ -1,13 +1,13 @@
-// All games share the same uploaded launch trailer for now.
-const SHARED_TRAILER = "/trailers/launch.mp4";
+// All games share the same uploaded launch trailer.
+const SHARED_TRAILER = "/videos/trailer_ac_mirage.mp4";
 
 export const gameTrailers: Record<string, string> = {
-  "cyber-odyssey": SHARED_TRAILER,
-  "shadow-realm": SHARED_TRAILER,
-  "nova-protocol": SHARED_TRAILER,
-  "iron-dynasty": SHARED_TRAILER,
-  "void-hunters": SHARED_TRAILER,
-  "eternal-fortress": SHARED_TRAILER,
+  "cyber-odyssey": "/videos/trailer_ac_mirage.mp4",
+  "shadow-realm": "/videos/trailer_ac_mirage.mp4",
+  "nova-protocol": "/videos/trailer_ac_mirage.mp4",
+  "iron-dynasty": "/videos/trailer_ac_mirage.mp4",
+  "void-hunters": "/videos/trailer_ac_mirage.mp4",
+  "eternal-fortress": "/videos/trailer_ac_mirage.mp4",
 };
 
 export const defaultTrailer = SHARED_TRAILER;
