@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import { GAMES, priceAfterDiscount, type Game } from "@/lib/games";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/favorites")({
   head: () => ({
@@ -21,6 +22,7 @@ type SortKey = "date" | "price-asc" | "price-desc" | "rating";
 type Filter = "all" | "sale" | "recent";
 
 function FavoritesPage() {
+  useRequireAuth();
   const { wishlist, toggleWishlist, addToCart } = useShop();
   const { bumpCart } = useUI();
   const [sort, setSort] = useState<SortKey>("date");

@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,6 +20,11 @@ import { Route as GameIdRouteImport } from './routes/game.$id'
 import { Route as DeveloperPublishRouteImport } from './routes/developer.publish'
 import { Route as DeveloperDashboardRouteImport } from './routes/developer.dashboard'
 
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -26,6 +33,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const MessagesRoute = MessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -63,8 +75,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/developer/dashboard': typeof DeveloperDashboardRoute
   '/developer/publish': typeof DeveloperPublishRoute
   '/game/$id': typeof GameIdRoute
@@ -73,8 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/developer/dashboard': typeof DeveloperDashboardRoute
   '/developer/publish': typeof DeveloperPublishRoute
   '/game/$id': typeof GameIdRoute
@@ -84,8 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/developer/dashboard': typeof DeveloperDashboardRoute
   '/developer/publish': typeof DeveloperPublishRoute
   '/game/$id': typeof GameIdRoute
@@ -96,8 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/favorites'
     | '/library'
+    | '/login'
     | '/messages'
     | '/profile'
+    | '/register'
     | '/developer/dashboard'
     | '/developer/publish'
     | '/game/$id'
@@ -106,8 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/favorites'
     | '/library'
+    | '/login'
     | '/messages'
     | '/profile'
+    | '/register'
     | '/developer/dashboard'
     | '/developer/publish'
     | '/game/$id'
@@ -116,8 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/favorites'
     | '/library'
+    | '/login'
     | '/messages'
     | '/profile'
+    | '/register'
     | '/developer/dashboard'
     | '/developer/publish'
     | '/game/$id'
@@ -127,8 +151,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FavoritesRoute: typeof FavoritesRoute
   LibraryRoute: typeof LibraryRoute
+  LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
   ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
   DeveloperDashboardRoute: typeof DeveloperDashboardRoute
   DeveloperPublishRoute: typeof DeveloperPublishRoute
   GameIdRoute: typeof GameIdRoute
@@ -136,6 +162,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -148,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/messages'
       preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -199,8 +239,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FavoritesRoute: FavoritesRoute,
   LibraryRoute: LibraryRoute,
+  LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
   ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
   DeveloperDashboardRoute: DeveloperDashboardRoute,
   DeveloperPublishRoute: DeveloperPublishRoute,
   GameIdRoute: GameIdRoute,

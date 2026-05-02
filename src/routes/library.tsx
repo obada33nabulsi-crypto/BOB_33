@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Download, Trash2, Search, CheckCircle2, Library as LibraryIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useShop } from "@/store/shop";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/library")({
   head: () => ({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/library")({
 type Filter = "all" | "installed" | "not_installed";
 
 function LibraryPage() {
+  useRequireAuth();
   const { library, getGame, toggleInstalled, removeFromLibrary } = useShop();
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
