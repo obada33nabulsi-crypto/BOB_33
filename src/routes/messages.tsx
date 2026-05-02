@@ -15,6 +15,7 @@ export const Route = createFileRoute("/messages")({
 });
 
 function MessagesPage() {
+  const isAuthed = useRequireAuth();
   const [conversations, setConversations] = useState<Conversation[]>(MOCK_CONVERSATIONS);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
