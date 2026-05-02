@@ -1,10 +1,11 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Search, ChevronDown, Menu, X, Upload } from "lucide-react";
+import { Search, ChevronDown, Menu, X, Upload, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { GAMES } from "@/lib/games";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
+import { useAuth } from "@/store/auth";
 import logoUrl from "@/assets/logo-umbrella.png";
 import cartIcon from "@/assets/icon-cart.png";
 import homeIcon from "@/assets/icon-home.png";
@@ -18,6 +19,8 @@ const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 export default function Navbar() {
   const { cart, wishlist } = useShop();
   const { toggleFriends, toggleCart, cartBounce } = useUI();
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [showCats, setShowCats] = useState(false);
   const [showMobile, setShowMobile] = useState(false);
@@ -25,6 +28,14 @@ export default function Navbar() {
   const catRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const path = location.pathname;
+
+  const requireAuth = (cb: () => void) => {
+    if (!isAuthenticated) {
+      navigate({ to: "/login", search: { redirect: path } });
+      return;
+    }
+    cb();
+  };
 
   const suggestions = useMemo(() => {
     if (!query.trim()) return [];
