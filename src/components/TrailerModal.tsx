@@ -19,8 +19,9 @@ interface TrailerModalProps {
   customUrl?: string;
 }
 
-const CYAN = "#00f5ff";
-const PURPLE = "#7c3aed";
+// Swapped from cyan to purple per design direction.
+const CYAN = "#7c3aed"; // primary accent (now purple)
+const PURPLE = "#a855f7"; // secondary accent (lighter purple)
 
 function formatTime(s: number): string {
   if (!isFinite(s) || s < 0) s = 0;
