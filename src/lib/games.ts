@@ -1,10 +1,10 @@
-import heroCyber from "@/assets/hero-cyber.jpg";
-import gameShadow from "@/assets/game-shadow.jpg";
-import gameNova from "@/assets/game-nova.jpg";
-import gameIron from "@/assets/game-iron.jpg";
-import gameVoid from "@/assets/game-void.jpg";
-import gameEternal from "@/assets/game-eternal.jpg";
-import gameOdyssey from "@/assets/game-odyssey.jpg";
+import heroCyber from "@/assets/heading-image/crimson-desert-game-3840x2160-25363.jpg";
+import gameShadow from "@/assets/heading-image/gv8967bk4ksd1.jpeg";
+import gameNova from "@/assets/heading-image/marvels-spider-man-3840x2160-11609.jpeg";
+import gameIron from "@/assets/heading-image/thumb-1920-917971.jpg";
+import gameVoid from "@/assets/heading-image/wallpaperflare.com_wallpaper.jpg";
+import gameEternal from "@/assets/heading-image/wallpaperflare.com_wallpaper2.jpg";
+import gameOdyssey from "@/assets/heading-image/wp1980789-tom-clancys-rainbow-six-siege-wallpapers.jpg";
 
 export type Game = {
   id: string;
@@ -22,8 +22,18 @@ export const HERO_IMAGE = heroCyber;
 
 export const GAMES: Game[] = [
   {
+    id: "crimson-Desert",
+    title: "Crimson Desert",
+    cover: heroCyber,
+    genres: ["Strategy", "Fantasy"],
+    price: 44.99,
+    discount: 25,
+    rating: 4.9,
+    description: "Defend the last sky-bound bastion against the storm legions.",
+  },
+  {
     id: "cyber-odyssey",
-    title: "Cyber Odyssey",
+    title: "Rainbow Six Siege",
     cover: gameOdyssey,
     genres: ["Action", "RPG"],
     price: 59.99,
@@ -34,7 +44,7 @@ export const GAMES: Game[] = [
   },
   {
     id: "shadow-realm",
-    title: "Shadow Realm",
+    title: "silent hill 2",
     cover: gameShadow,
     genres: ["RPG", "Dark Fantasy"],
     price: 49.99,
@@ -44,7 +54,7 @@ export const GAMES: Game[] = [
   },
   {
     id: "nova-protocol",
-    title: "Nova Protocol",
+    title: "spider-man 2",
     cover: gameNova,
     genres: ["Strategy", "Sci-Fi"],
     price: 39.99,
@@ -55,7 +65,7 @@ export const GAMES: Game[] = [
   },
   {
     id: "iron-dynasty",
-    title: "Iron Dynasty",
+    title: "red dead redemption 2",
     cover: gameIron,
     genres: ["Action", "Strategy"],
     price: 54.99,
@@ -64,7 +74,7 @@ export const GAMES: Game[] = [
   },
   {
     id: "void-hunters",
-    title: "Void Hunters",
+    title: "Assassin's Creed Mirage",
     cover: gameVoid,
     genres: ["Indie", "Horror"],
     price: 24.99,
@@ -75,7 +85,7 @@ export const GAMES: Game[] = [
   },
   {
     id: "eternal-fortress",
-    title: "Eternal Fortress",
+    title: "the witcher 3",
     cover: gameEternal,
     genres: ["Strategy", "Fantasy"],
     price: 44.99,
@@ -85,13 +95,7 @@ export const GAMES: Game[] = [
   },
 ];
 
-export const CATEGORIES = [
-  { name: "Action", icon: "⚔️", count: 1284 },
-  { name: "RPG", icon: "🛡️", count: 942 },
-  { name: "Strategy", icon: "♟️", count: 567 },
-  { name: "Indie", icon: "💎", count: 2103 },
-  { name: "Free to Play", icon: "🎮", count: 318 },
-];
+
 
 export function priceAfterDiscount(g: Game) {
   if (!g.discount) return g.price;

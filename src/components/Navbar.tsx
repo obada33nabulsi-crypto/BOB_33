@@ -1,14 +1,12 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Search, ChevronDown, Menu, X, Upload, LogIn } from "lucide-react";
+import { Search, ChevronDown, Menu, X, Upload } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { GAMES } from "@/lib/games";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
-import { useAuth } from "@/store/auth";
 import logoUrl from "@/assets/logo-umbrella.png";
 import cartIcon from "@/assets/icon-cart.png";
-import homeIcon from "@/assets/icon-home.png";
 import heartIcon from "@/assets/icon-heart.png";
 import libraryIcon from "@/assets/icon-library.png";
 import settingsIcon from "@/assets/icon-settings.png";
@@ -19,8 +17,6 @@ const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 export default function Navbar() {
   const { cart, wishlist } = useShop();
   const { toggleFriends, toggleCart, cartBounce } = useUI();
-  const { user, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [showCats, setShowCats] = useState(false);
   const [showMobile, setShowMobile] = useState(false);
@@ -28,14 +24,6 @@ export default function Navbar() {
   const catRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const path = location.pathname;
-
-  const requireAuth = (cb: () => void) => {
-    if (!isAuthenticated) {
-      navigate({ to: "/login", search: { redirect: path } });
-      return;
-    }
-    cb();
-  };
 
   const suggestions = useMemo(() => {
     if (!query.trim()) return [];
@@ -58,7 +46,6 @@ export default function Navbar() {
       <div className="container mx-auto flex h-20 items-center gap-4 px-4 lg:px-8">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={homeIcon} alt="" className="pixel-img h-9 w-9" />
           <img src={logoUrl} alt="Umbrella" className="pixel-img h-8 md:h-10 w-auto" />
         </Link>
 
@@ -157,27 +144,21 @@ export default function Navbar() {
             <Upload className="h-5 w-5" />
           </Link>
           {/* Messages */}
-          <button
-            onClick={() => requireAuth(() => navigate({ to: "/messages" }))}
-            className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages"
-          >
-            <img src={controllerIcon} alt="" className="pixel-img h-7 w-7" />
-          </button>
+          <Link to="/messages" className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages">
+            💬
+          </Link>
           {/* Wishlist */}
-          <button
-            onClick={() => requireAuth(() => navigate({ to: "/favorites" }))}
-            className={navBtn(path === "/favorites")} aria-label="Wishlist"
-          >
+          <Link to="/favorites" className={navBtn(path === "/favorites")} aria-label="Wishlist">
             <img src={heartIcon} alt="" className="pixel-img h-7 w-7" />
             {wishlist.length > 0 && (
               <span className="absolute -top-0.5 -right-0.5 h-5 min-w-5 bg-[var(--brand-pink-1)] text-[10px] font-display text-white flex items-center justify-center px-1">
                 {wishlist.length}
               </span>
             )}
-          </button>
+          </Link>
           {/* Friends */}
           <button
-            onClick={() => requireAuth(toggleFriends)}
+            onClick={toggleFriends}
             className={`${navBtn(false)}`}
             aria-label="Friends"
           >
@@ -187,15 +168,12 @@ export default function Navbar() {
             </span>
           </button>
           {/* Library */}
-          <button
-            onClick={() => requireAuth(() => navigate({ to: "/library" }))}
-            className={`${navBtn(path === "/library")} hidden sm:block`} aria-label="Library"
-          >
+          <Link to="/library" className={`${navBtn(path === "/library")} hidden sm:block`} aria-label="Library">
             <img src={libraryIcon} alt="" className="pixel-img h-7 w-7" />
-          </button>
+          </Link>
           {/* Cart */}
           <motion.button
-            onClick={() => requireAuth(toggleCart)}
+            onClick={toggleCart}
             animate={cartBounce > 0 ? { scale: [1, 1.25, 0.9, 1.1, 1], rotate: [0, -8, 8, -4, 0] } : {}}
             transition={{ duration: 0.5 }}
             key={cartBounce}
@@ -218,31 +196,18 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.button>
           {/* Settings */}
-          {isAuthenticated && (
-            <Link to="/profile" className={`${navBtn(path === "/profile")} hidden sm:flex`} aria-label="Settings">
-              <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
-            </Link>
-          )}
-          {/* Avatar → Profile  OR  Sign In */}
-          {isAuthenticated ? (
-            <Link
-              to="/profile"
-              className="h-10 px-2 min-w-10 flex items-center justify-center gap-2 font-display text-[10px] text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
-              style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
-              aria-label="Profile"
-            >
-              <span>{user?.avatar}</span>
-              <span className="hidden md:inline truncate max-w-[80px]">{user?.username}</span>
-            </Link>
-          ) : (
-            <Link
-              to="/login"
-              className="inline-flex items-center gap-1.5 h-10 px-3 font-display text-[10px] tracking-wider text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
-              style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
-            >
-              <LogIn className="h-3.5 w-3.5" /> SIGN IN
-            </Link>
-          )}
+          <Link to="/profile" className={`${navBtn(path === "/profile")} hidden sm:flex`} aria-label="Settings">
+            <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
+          </Link>
+          {/* Avatar → Profile */}
+          <Link
+            to="/profile"
+            className="h-10 w-10 flex items-center justify-center font-display text-[10px] text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
+            style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
+            aria-label="Profile"
+          >
+            PS
+          </Link>
           <button onClick={() => setShowMobile((s) => !s)} className="lg:hidden p-2">
             {showMobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

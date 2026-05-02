@@ -10,6 +10,8 @@ import CartDrawer from "@/components/CartDrawer";
 import CheckoutModal from "@/components/CheckoutModal";
 import NexusAI from "@/components/NexusAI";
 
+
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -23,7 +25,7 @@ function NotFoundComponent() {
         </p>
         <div className="mt-6">
           <Link
-            to="/"
+            to="/login"
             className="inline-flex items-center justify-center px-5 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink"
           >
             GO HOME
@@ -75,36 +77,36 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <AuthProvider>
-    <ShopProvider>
-      <UIProvider>
-        <div className="min-h-screen bg-background text-foreground flex flex-col">
-          <Navbar />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <Footer />
-          <FriendsDrawer />
-          <CartDrawer />
-          <CheckoutModal />
-          <NexusAI />
-          <Toaster
-            theme="dark"
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                background: "#2a2a2a",
-                border: "2px solid #ea34a9",
-                color: "#e5e5e5",
-                fontFamily: "'VT323', monospace",
-                fontSize: "1.125rem",
-                borderRadius: 0,
-                boxShadow: "4px 4px 0 0 #1a1a1a",
-              },
-            }}
-          />
-        </div>
-      </UIProvider>
-    </ShopProvider>
+      <ShopProvider>
+        <UIProvider>
+          <div className="min-h-screen bg-background text-foreground flex flex-col">
+            <Navbar />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <Footer />
+            <FriendsDrawer />
+            <CartDrawer />
+            <CheckoutModal />
+            <NexusAI />
+            <Toaster
+              theme="dark"
+              position="bottom-right"
+              toastOptions={{
+                style: {
+                  background: "#2a2a2a",
+                  border: "2px solid #ea34a9",
+                  color: "#e5e5e5",
+                  fontFamily: "'VT323', monospace",
+                  fontSize: "1.125rem",
+                  borderRadius: 0,
+                  boxShadow: "4px 4px 0 0 #1a1a1a",
+                },
+              }}
+            />
+          </div>
+        </UIProvider>
+      </ShopProvider>
     </AuthProvider>
   );
 }

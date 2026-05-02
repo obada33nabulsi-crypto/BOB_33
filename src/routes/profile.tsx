@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Camera, ChevronRight, Plus, X, CreditCard, LogOut } from "lucide-react";
+import { Camera, ChevronRight, Plus, X, CreditCard } from "lucide-react";
 import { toast } from "sonner";
-import { useAuth } from "@/store/auth";
-import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -19,11 +17,7 @@ export const Route = createFileRoute("/profile")({
 type Tab = "account" | "security" | "privacy" | "notifications" | "payment";
 
 function ProfilePage() {
-  useRequireAuth();
-  const { logout } = useAuth();
-  const navigate = useNavigate();
   const [tab, setTab] = useState<Tab>("account");
-  const [confirmLogout, setConfirmLogout] = useState(false);
   const [twoFA, setTwoFA] = useState(false);
   const [addCard, setAddCard] = useState(false);
   const [cards, setCards] = useState([
@@ -102,46 +96,7 @@ function ProfilePage() {
               {l.toUpperCase()}
             </button>
           ))}
-          <div className="border-t-2 border-border my-2" />
-          <button
-            onClick={() => setConfirmLogout(true)}
-            className="w-full text-left px-4 py-3 font-display text-[11px] tracking-wider transition text-[#ff6b6b] hover:bg-[#ff6b6b]/10 inline-flex items-center gap-2"
-          >
-            <LogOut className="h-3.5 w-3.5" /> SIGN OUT
-          </button>
         </aside>
-
-        <AnimatePresence>
-          {confirmLogout && (
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4"
-              onClick={() => setConfirmLogout(false)}
-            >
-              <motion.div
-                initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}
-                className="glass pixel-border max-w-sm w-full p-6 text-center"
-                style={{ background: "rgba(20,20,28,0.95)" }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <h3 className="font-display text-base text-gradient-pink mb-3">Sign out?</h3>
-                <p className="font-heading text-lg text-muted-foreground mb-5">Are you sure you want to sign out?</p>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setConfirmLogout(false)}
-                    className="flex-1 py-2.5 font-display text-xs border-2 border-border hover:border-primary transition"
-                  >CANCEL</button>
-                  <button
-                    onClick={() => { logout(); setConfirmLogout(false); toast("Signed out"); navigate({ to: "/" }); }}
-                    className="flex-1 py-2.5 font-display text-xs text-white border-2 border-[#1a1a1a]"
-                    style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
-                  >SIGN OUT</button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
 
         {/* Content */}
         <div className="bg-card border-2 border-border p-6"

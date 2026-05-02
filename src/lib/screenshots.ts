@@ -1,54 +1,112 @@
 // Real screenshot URLs mapped per game ID. Falls back to gradient placeholders
 // if a game has no entry (e.g. newly published indie titles).
+import crimson from "@/assets/games/crimson/img (1).jpg";
+import crimson2 from "@/assets/games/crimson/img (2).jpg";
+import crimson3 from "@/assets/games/crimson/img (3).png";
+import crimson4 from "@/assets/games/crimson/img (4).png";
+import crimson5 from "@/assets/games/crimson/img (5).png";
 
+
+import rinbowSixSage from "@/assets/games/rainbow-six-sage/img1 (1).jpg";
+import rinbowSixSage2 from "@/assets/games/rainbow-six-sage/img1 (2).jpg";
+import rinbowSixSage3 from "@/assets/games/rainbow-six-sage/img1 (3).jpg";
+import rinbowSixSage4 from "@/assets/games/rainbow-six-sage/img1 (4).jpg";
+import rinbowSixSage5 from "@/assets/games/rainbow-six-sage/img1 (5).jpg";
+import rinbowSixSage6 from "@/assets/games/rainbow-six-sage/img1 (6).jpg";
+
+import silentHill from "@/assets/games/Silent-hill/img (1).jpeg";
+import silentHill2 from "@/assets/games/silent-hill/img (1).jpg";
+import silentHill3 from "@/assets/games/silent-hill/img (2).jpg";
+import silentHill4 from "@/assets/games/silent-hill/img (3).jpg";
+import silentHill5 from "@/assets/games/silent-hill/img (4).jpg";
+import silentHill6 from "@/assets/games/silent-hill/img (5).jpg";
+
+import spiderMan from "@/assets/games/spider-man/img (1).jpeg";
+import spiderMan2 from "@/assets/games/spider-man/img (1).jpg";
+import spiderMan3 from "@/assets/games/spider-man/img (2).jpeg";
+import spiderMan4 from "@/assets/games/spider-man/img (2).jpg";
+import spiderMan5 from "@/assets/games/spider-man/img (3).jpg";
+import spiderMan6 from "@/assets/games/spider-man/img (4).jpg";
+
+import redDead from "@/assets/games/red-dead/img (1).jpg";
+import redDead2 from "@/assets/games/red-dead/img (1).png";
+import redDead3 from "@/assets/games/red-dead/img (2).jpg";
+import redDead4 from "@/assets/games/red-dead/img (2).png";
+import redDead5 from "@/assets/games/red-dead/img (4).jpg";
+import redDead6 from "@/assets/games/red-dead/img (5).jpg"; 
+
+import assassin from "@/assets/games/assassin-creed/img (1).jpg";
+import assassin2 from "@/assets/games/assassin-creed/img (2).jpg";
+import assassin3 from "@/assets/games/assassin-creed/img (3).jpg";
+import assassin4 from "@/assets/games/assassin-creed/img (4).jpg";
+import assassin5 from "@/assets/games/assassin-creed/img (5).jpg";
+import assassin6 from "@/assets/games/assassin-creed/img (6).jpg";
+
+import theWicher from "@/assets/games/the-witcher/img (1).jpg";
+import theWitcher2 from "@/assets/games/the-witcher/img (2).jpg";
+import theWitcher3 from "@/assets/games/the-witcher/img (3).jpg";
+import theWitcher4 from "@/assets/games/the-witcher/img (4).jpg";
+import theWitcher5 from "@/assets/games/the-witcher/img (5).jpg";
+import theWitcher6 from "@/assets/games/the-witcher/img (6).jpg";
+import { th } from "date-fns/locale";
 export const gameScreenshots: Record<string, string[]> = {
+  
+"crimson-Desert": [
+    crimson,   
+    crimson2,
+    crimson3,
+    crimson4,
+    crimson5,
+    "https://tse3.mm.bing.net/th/id/OIP.8vk8OsGDrxrrsj8RRcrTVQHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  ],
+
   "cyber-odyssey": [
-    "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1280&h=720&fit=crop",
+    rinbowSixSage,
+    rinbowSixSage2,
+    rinbowSixSage3,
+    rinbowSixSage4,
+    rinbowSixSage5,
+    rinbowSixSage6,
   ],
   "shadow-realm": [
-    "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1481026469463-66327c86e544?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=1280&h=720&fit=crop",
+    silentHill,
+    silentHill2,
+    silentHill3,
+    silentHill4,
+    silentHill5,
+    silentHill6,
   ],
   "nova-protocol": [
-    "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1462332420958-a05d1e002413?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1464802686167-b939a6910659?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=1280&h=720&fit=crop",
+    spiderMan,
+    spiderMan2,
+    spiderMan3,
+    spiderMan4,
+    spiderMan5,
+    spiderMan6,
   ],
   "iron-dynasty": [
-    "https://images.unsplash.com/photo-1585620385456-4759f9b5c7d9?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=1280&h=720&fit=crop",
+    redDead,
+    redDead2,
+    redDead3,
+    redDead4,
+    redDead5,
+    redDead6,
   ],
   "void-hunters": [
-    "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1616509091215-57bbece91654?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1614294149010-950b698f72c0?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=1280&h=720&fit=crop",
+    assassin,
+    assassin2,
+    assassin3,
+    assassin4,
+    assassin5,
+    assassin6,
   ],
   "eternal-fortress": [
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1572435555646-7ad9a149ad91?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1280&h=720&fit=crop",
-    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1280&h=720&fit=crop",
+    theWicher,
+    theWitcher2,
+    theWitcher3,
+    theWitcher4,
+    theWitcher5,
+    theWitcher6,
   ],
 };
 
