@@ -20,7 +20,7 @@ type Tab = "account" | "security" | "privacy" | "notifications" | "payment";
 
 function ProfilePage() {
   useRequireAuth();
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const [tab, setTab] = useState<Tab>("account");
   const [confirmLogout, setConfirmLogout] = useState(false);
