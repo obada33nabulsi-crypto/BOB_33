@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as IndexRouteImport } from './routes/index'
@@ -32,6 +33,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const MessagesRoute = MessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/favorites'
     | '/library'
+    | '/login'
     | '/messages'
     | '/profile'
     | '/register'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/favorites'
     | '/library'
+    | '/login'
     | '/messages'
     | '/profile'
     | '/register'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/favorites'
     | '/library'
+    | '/login'
     | '/messages'
     | '/profile'
     | '/register'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FavoritesRoute: typeof FavoritesRoute
   LibraryRoute: typeof LibraryRoute
+  LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/messages'
       preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FavoritesRoute: FavoritesRoute,
   LibraryRoute: LibraryRoute,
+  LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
