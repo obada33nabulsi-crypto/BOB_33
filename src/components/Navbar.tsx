@@ -157,21 +157,27 @@ export default function Navbar() {
             <Upload className="h-5 w-5" />
           </Link>
           {/* Messages */}
-          <Link to="/messages" className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages">
+          <button
+            onClick={() => requireAuth(() => navigate({ to: "/messages" }))}
+            className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages"
+          >
             <img src={controllerIcon} alt="" className="pixel-img h-7 w-7" />
-          </Link>
+          </button>
           {/* Wishlist */}
-          <Link to="/favorites" className={navBtn(path === "/favorites")} aria-label="Wishlist">
+          <button
+            onClick={() => requireAuth(() => navigate({ to: "/favorites" }))}
+            className={navBtn(path === "/favorites")} aria-label="Wishlist"
+          >
             <img src={heartIcon} alt="" className="pixel-img h-7 w-7" />
             {wishlist.length > 0 && (
               <span className="absolute -top-0.5 -right-0.5 h-5 min-w-5 bg-[var(--brand-pink-1)] text-[10px] font-display text-white flex items-center justify-center px-1">
                 {wishlist.length}
               </span>
             )}
-          </Link>
+          </button>
           {/* Friends */}
           <button
-            onClick={toggleFriends}
+            onClick={() => requireAuth(toggleFriends)}
             className={`${navBtn(false)}`}
             aria-label="Friends"
           >
@@ -181,12 +187,15 @@ export default function Navbar() {
             </span>
           </button>
           {/* Library */}
-          <Link to="/library" className={`${navBtn(path === "/library")} hidden sm:block`} aria-label="Library">
+          <button
+            onClick={() => requireAuth(() => navigate({ to: "/library" }))}
+            className={`${navBtn(path === "/library")} hidden sm:block`} aria-label="Library"
+          >
             <img src={libraryIcon} alt="" className="pixel-img h-7 w-7" />
-          </Link>
+          </button>
           {/* Cart */}
           <motion.button
-            onClick={toggleCart}
+            onClick={() => requireAuth(toggleCart)}
             animate={cartBounce > 0 ? { scale: [1, 1.25, 0.9, 1.1, 1], rotate: [0, -8, 8, -4, 0] } : {}}
             transition={{ duration: 0.5 }}
             key={cartBounce}
@@ -209,18 +218,31 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.button>
           {/* Settings */}
-          <Link to="/profile" className={`${navBtn(path === "/profile")} hidden sm:flex`} aria-label="Settings">
-            <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
-          </Link>
-          {/* Avatar → Profile */}
-          <Link
-            to="/profile"
-            className="h-10 w-10 flex items-center justify-center font-display text-[10px] text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
-            style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
-            aria-label="Profile"
-          >
-            PS
-          </Link>
+          {isAuthenticated && (
+            <Link to="/profile" className={`${navBtn(path === "/profile")} hidden sm:flex`} aria-label="Settings">
+              <img src={settingsIcon} alt="" className="pixel-img h-7 w-7" />
+            </Link>
+          )}
+          {/* Avatar → Profile  OR  Sign In */}
+          {isAuthenticated ? (
+            <Link
+              to="/profile"
+              className="h-10 px-2 min-w-10 flex items-center justify-center gap-2 font-display text-[10px] text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
+              style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
+              aria-label="Profile"
+            >
+              <span>{user?.avatar}</span>
+              <span className="hidden md:inline truncate max-w-[80px]">{user?.username}</span>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 h-10 px-3 font-display text-[10px] tracking-wider text-white border-2 border-[#1a1a1a] hover:scale-105 transition"
+              style={{ background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
+            >
+              <LogIn className="h-3.5 w-3.5" /> SIGN IN
+            </Link>
+          )}
           <button onClick={() => setShowMobile((s) => !s)} className="lg:hidden p-2">
             {showMobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
