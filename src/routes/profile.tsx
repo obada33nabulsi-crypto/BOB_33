@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Camera, ChevronRight, Plus, X, CreditCard } from "lucide-react";
+import { Camera, ChevronRight, Plus, X, CreditCard, LogOut } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "@/store/auth";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({

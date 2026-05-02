@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Download, Trash2, Search, CheckCircle2, Library as LibraryIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useShop } from "@/store/shop";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/library")({
   head: () => ({

@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import { GAMES, priceAfterDiscount, type Game } from "@/lib/games";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/favorites")({
   head: () => ({

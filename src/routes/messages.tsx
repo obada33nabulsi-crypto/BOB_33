@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Send, ArrowLeft, Smile, Image, CheckCheck } from "lucide-react";
 import { MOCK_CONVERSATIONS, getFriend, formatTime, type Message, type Conversation } from "@/lib/messages";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export const Route = createFileRoute("/messages")({
   head: () => ({
