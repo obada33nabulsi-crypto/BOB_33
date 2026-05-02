@@ -1,20 +1,16 @@
+// All games share the same uploaded launch trailer for now.
+const SHARED_TRAILER = "/trailers/launch.mp4";
+
 export const gameTrailers: Record<string, string> = {
-  "cyber-odyssey":
-    "https://cdn.pixabay.com/video/2022/10/13/134942-761451830_large.mp4",
-  "shadow-realm":
-    "https://cdn.pixabay.com/video/2023/03/15/155428-808849752_large.mp4",
-  "nova-protocol":
-    "https://cdn.pixabay.com/video/2022/11/04/137675-769156497_large.mp4",
-  "iron-dynasty":
-    "https://cdn.pixabay.com/video/2021/09/14/88646-607799775_large.mp4",
-  "void-hunters":
-    "https://cdn.pixabay.com/video/2023/01/20/147973-791347113_large.mp4",
-  "eternal-fortress":
-    "https://cdn.pixabay.com/video/2022/08/04/127020-734100008_large.mp4",
+  "cyber-odyssey": SHARED_TRAILER,
+  "shadow-realm": SHARED_TRAILER,
+  "nova-protocol": SHARED_TRAILER,
+  "iron-dynasty": SHARED_TRAILER,
+  "void-hunters": SHARED_TRAILER,
+  "eternal-fortress": SHARED_TRAILER,
 };
 
-export const defaultTrailer =
-  "https://cdn.pixabay.com/video/2023/06/01/165646-832898452_large.mp4";
+export const defaultTrailer = SHARED_TRAILER;
 
 /**
  * Resolve the trailer source for a given game id.
