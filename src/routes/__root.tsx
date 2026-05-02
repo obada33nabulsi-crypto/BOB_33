@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { Toaster } from "sonner";
 import { ShopProvider } from "@/store/shop";
 import { UIProvider } from "@/store/ui";
+import { AuthProvider } from "@/store/auth";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FriendsDrawer from "@/components/FriendsDrawer";
@@ -73,6 +74,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
+    <AuthProvider>
     <ShopProvider>
       <UIProvider>
         <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -103,5 +105,6 @@ function RootComponent() {
         </div>
       </UIProvider>
     </ShopProvider>
+    </AuthProvider>
   );
 }
