@@ -17,12 +17,11 @@ export const Route = createFileRoute("/profile")({
 type Tab = "account" | "security" | "privacy" | "notifications" | "payment";
 
 function ProfilePage() {
-  const isAuthed = useRequireAuth();
+  useRequireAuth();
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [tab, setTab] = useState<Tab>("account");
   const [confirmLogout, setConfirmLogout] = useState(false);
-  const navigate = useNavigate();
-  if (!isAuthed) return null;
   const [twoFA, setTwoFA] = useState(false);
   const [addCard, setAddCard] = useState(false);
   const [cards, setCards] = useState([

@@ -21,9 +21,8 @@ type SortKey = "date" | "price-asc" | "price-desc" | "rating";
 type Filter = "all" | "sale" | "recent";
 
 function FavoritesPage() {
-  const isAuthed = useRequireAuth();
+  useRequireAuth();
   const { wishlist, toggleWishlist, addToCart } = useShop();
-  if (!isAuthed) return null;
   const { bumpCart } = useUI();
   const [sort, setSort] = useState<SortKey>("date");
   const [filter, setFilter] = useState<Filter>("all");

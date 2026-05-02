@@ -20,9 +20,8 @@ export const Route = createFileRoute("/library")({
 type Filter = "all" | "installed" | "not_installed";
 
 function LibraryPage() {
-  const isAuthed = useRequireAuth();
+  useRequireAuth();
   const { library, getGame, toggleInstalled, removeFromLibrary } = useShop();
-  if (!isAuthed) return null;
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
 
