@@ -35,12 +35,12 @@ import redDead4 from "@/assets/games/red-dead/img (2).png";
 import redDead5 from "@/assets/games/red-dead/img (4).jpg";
 import redDead6 from "@/assets/games/red-dead/img (5).jpg"; 
 
-import assassin from "@/assets/games/assassin-creed/img (1).jpg";
-import assassin2 from "@/assets/games/assassin-creed/img (2).jpg";
-import assassin3 from "@/assets/games/assassin-creed/img (3).jpg";
-import assassin4 from "@/assets/games/assassin-creed/img (4).jpg";
-import assassin5 from "@/assets/games/assassin-creed/img (5).jpg";
-import assassin6 from "@/assets/games/assassin-creed/img (6).jpg";
+import assassin from "@/assets/games/Assassin-creed/img (1).jpg";
+import assassin2 from "@/assets/games/Assassin-creed/img (2).jpg";
+import assassin3 from "@/assets/games/Assassin-creed/img (3).jpg";
+import assassin4 from "@/assets/games/Assassin-creed/img (4).jpg";
+import assassin5 from "@/assets/games/Assassin-creed/img (5).jpg";
+import assassin6 from "@/assets/games/Assassin-creed/img (6).jpg";
 
 import theWicher from "@/assets/games/the-witcher/img (1).jpg";
 import theWitcher2 from "@/assets/games/the-witcher/img (2).jpg";
