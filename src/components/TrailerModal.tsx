@@ -77,6 +77,7 @@ export default function TrailerModal({
     setCurrent(0);
     setDuration(0);
     setControlsVisible(true);
+    autoplayedRef.current = false;
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
@@ -90,21 +91,23 @@ export default function TrailerModal({
     };
   }, [open, handleClose, stopAndReset]);
 
-  // Autoplay when video can play
+  // Autoplay only on the FIRST canplay event per load — subsequent canplay
+  // events (from buffering) must NOT reset currentTime or re-trigger play(),
+  // otherwise the browser aborts playback (looks like "plays 1s then pauses").
   const handleCanPlay = () => {
     setLoaded(true);
+    if (autoplayedRef.current) return;
+    autoplayedRef.current = true;
     const v = videoRef.current;
-    if (v) {
-      v.currentTime = 0;
-      const p = v.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          // Autoplay blocked — try muted autoplay as fallback
-          v.muted = true;
-          setMuted(true);
-          v.play().catch(() => {});
-        });
-      }
+    if (!v) return;
+    // Start muted — browsers reliably allow muted autoplay; user can unmute.
+    v.muted = true;
+    setMuted(true);
+    const p = v.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(() => {
+        // Even muted autoplay blocked — leave paused, user clicks play.
+      });
     }
   };
 
