@@ -38,6 +38,7 @@ export default function TrailerModal({
 }: TrailerModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hideTimerRef = useRef<number | null>(null);
+  const autoplayedRef = useRef(false);
 
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
