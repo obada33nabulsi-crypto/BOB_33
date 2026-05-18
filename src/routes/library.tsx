@@ -21,7 +21,6 @@ export const Route = createFileRoute("/library")({
 type Filter = "all" | "installed" | "not_installed";
 
 function LibraryPage() {
-  useRequireAuth();
   const { library, getGame, toggleInstalled, removeFromLibrary } = useShop();
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
@@ -206,7 +205,7 @@ function EmptyLibrary() {
         Complete a purchase and your games will appear here.
       </p>
       <Link
-        to="/"
+        to="/register"
         className="inline-flex items-center px-5 py-3 bg-primary text-primary-foreground font-display text-[10px] tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
       >
         BROWSE GAMES

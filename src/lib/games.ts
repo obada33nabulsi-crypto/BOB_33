@@ -1,8 +1,8 @@
 import heroCyber from "@/assets/heading-image/crimson-desert-game-3840x2160-25363.jpg";
 import gameShadow from "@/assets/heading-image/gv8967bk4ksd1.jpeg";
 import gameNova from "@/assets/heading-image/marvels-spider-man-3840x2160-11609.jpeg";
-import gameIron from "@/assets/heading-image/thumb-1920-917971.jpg";
-import gameVoid from "@/assets/heading-image/wallpaperflare.com_wallpaper.jpg";
+import gameIron from "@/assets/games/red-dead/img (1).jpg";
+import gameVoid from "@/assets/games/Assassin-creed/img (1).jpg";
 import gameEternal from "@/assets/heading-image/wallpaperflare.com_wallpaper2.jpg";
 import gameOdyssey from "@/assets/heading-image/wp1980789-tom-clancys-rainbow-six-siege-wallpapers.jpg";
 

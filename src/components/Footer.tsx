@@ -2,38 +2,23 @@ import { Twitter, Github, Twitch, Youtube, Upload } from "lucide-react";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import logoUrl from "@/assets/logo-umbrella.png";
-import controllerIcon from "@/assets/icon-controller.png";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [sub, setSub] = useState(false);
 
   return (
-    <footer className="mt-16 border-t-2 border-primary">
-      <div className="container mx-auto px-4 lg:px-8 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-5">
-        <div>
-          <div className="flex items-center gap-3 mb-4">
-            <img src={controllerIcon} alt="" className="pixel-img h-9 w-9" />
-            <img src={logoUrl} alt="Umbrella" className="pixel-img h-8 w-auto" />
-          </div>
-          <p className="font-heading text-xl text-muted-foreground max-w-xs leading-tight">
-            The premium pixel destination for next-gen gaming. Powered by players, built for legends.
-          </p>
-          <div className="flex gap-3 mt-6">
-            {[Twitter, Github, Twitch, Youtube].map((Icon, i) => (
-              <a key={i} href="#" className="h-10 w-10 bg-card border-2 border-border flex items-center justify-center hover:border-primary hover:text-primary transition">
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
-        </div>
-
+    <footer className="relative border-t-2 border-primary flex justify-center items-center flex-col w-full">
+      <div className="mt-[50px] absolute top-[-5%] left-[8%]">
+        <img src={logoUrl} alt="Umbrella" className="pixel-img h-[50px] w-[200px]" />
+      </div>
+      <div className="container flex justify-center gap-20 py-[100px] w-[105%]">
         {[
           { title: "STORE", links: ["Browse", "New Releases", "Top Sellers", "Free Games"] },
           { title: "COMMUNITY", links: ["Forums", "Reviews", "Events", "Creators"] },
         ].map((col) => (
           <div key={col.title}>
-            <h4 className="font-display text-xs tracking-widest text-primary mb-4">{col.title}</h4>
+            <h4 className="font-display text-xl tracking-widest text-primary mb-4">{col.title}</h4>
             <ul className="space-y-2 font-heading text-xl text-muted-foreground">
               {col.links.map((l) => (
                 <li key={l}><a href="#" className="hover:text-primary transition">{l}</a></li>
@@ -42,11 +27,11 @@ export default function Footer() {
           </div>
         ))}
 
-        <div>
-          <h4 className="font-display text-xs tracking-widest text-primary mb-4">DEVELOPERS</h4>
+        <div className="w-[320px] pl-4">
+          <h4 className="font-display text-xl tracking-widest text-primary mb-4">DEVELOPERS</h4>
           <ul className="space-y-2 font-heading text-xl text-muted-foreground">
             <li>
-              <Link to="/developer/publish" className="inline-flex items-center gap-1 hover:text-primary transition">
+              <Link to="/developer/publish" className="relative inline-flex items-center gap-1 hover:text-primary transition">
                 <Upload className="h-3 w-3" /> Publish Your Game
               </Link>
             </li>
@@ -61,7 +46,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-xs tracking-widest text-primary mb-4">NEWSLETTER</h4>
+          <h4 className="font-display text-xl tracking-widest text-primary mb-4">NEWSLETTER</h4>
           <p className="font-heading text-xl text-muted-foreground mb-3 leading-tight">Get drop alerts and exclusive deals.</p>
           <form
             onSubmit={(e) => { e.preventDefault(); if (email) setSub(true); }}

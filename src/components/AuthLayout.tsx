@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GAMES } from "@/lib/games";
 import type { ReactNode } from "react";
+import logo from "@/assets/logo-umbrella.png"
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   const cards = GAMES.slice(0, 6);
@@ -34,10 +35,10 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
 
         <div className="relative z-10 text-center px-12">
-          <h1 className="font-display text-3xl text-gradient-pink mb-4">NexusStore</h1>
+          <h1 className="font-display text-3xl text-center text-gradient-pink mb-4"><img src={logo} alt="" width={400} height={200} /></h1>
           <p className="font-heading text-2xl text-foreground/90">The next-gen game store.</p>
           <p className="mt-6 font-heading text-xl text-muted-foreground">
-            Join <span className="text-primary">2.1M+ gamers</span> on NexusStore
+            Join <span className="text-primary">2.1M+ gamers</span> on<span className="text-primary"> UMBRELLA</span> 
           </p>
         </div>
       </div>

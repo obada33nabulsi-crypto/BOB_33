@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import trophyIcon from "@/assets/icon-trophy.png";
 
 const INITIAL = { h: 23, m: 47, s: 0 };
 
@@ -39,7 +38,7 @@ export default function SpecialOffer() {
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-2 bg-[var(--brand-green-1)] text-[var(--gray-deep)] font-display text-[10px] tracking-[0.2em] mb-4">
-              <img src={trophyIcon} alt="" className="pixel-img h-4 w-4" /> FLASH DEAL
+               FLASH DEAL
             </div>
             <h2 className="font-display text-2xl md:text-4xl mb-3 leading-tight">
               UP TO <span className="text-gradient-pink">75% OFF</span>

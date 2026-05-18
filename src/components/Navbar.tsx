@@ -11,6 +11,8 @@ import heartIcon from "@/assets/icon-heart.png";
 import libraryIcon from "@/assets/icon-library.png";
 import settingsIcon from "@/assets/icon-settings.png";
 import controllerIcon from "@/assets/icon-controller.png";
+import masseg from "@/assets/masseges.png";
+import game from "@/assets/tryGame.jpg"
 
 const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 
@@ -45,45 +47,15 @@ export default function Navbar() {
     <header className="glass-strong sticky top-0 z-50">
       <div className="container mx-auto flex h-20 items-center gap-4 px-4 lg:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={logoUrl} alt="Umbrella" className="pixel-img h-8 md:h-10 w-auto" />
+        <Link to="/register" className="flex items-center gap-3 shrink-0">
+          <img src={logoUrl} alt="Umbrella" className="pixel-img h-12 w-[200px]" />
         </Link>
 
-        {/* Categories */}
-        <div className="relative hidden lg:block ml-4" ref={catRef}>
-          <button
-            onClick={() => setShowCats((s) => !s)}
-            className="flex items-center gap-1 px-3 py-2 font-heading text-xl uppercase text-foreground/90 hover:text-primary transition"
-          >
-            Categories <ChevronDown className={`h-4 w-4 transition ${showCats ? "rotate-180" : ""}`} />
-          </button>
-          <AnimatePresence>
-            {showCats && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                className="absolute left-0 mt-2 w-56 glass pixel-border overflow-hidden"
-              >
-                {CATEGORIES.map((c) => (
-                  <Link
-                    key={c}
-                    to="/"
-                    hash="catalog"
-                    onClick={() => setShowCats(false)}
-                    className="block px-4 py-2.5 font-heading text-lg hover:bg-primary hover:text-primary-foreground transition"
-                  >
-                    {c}
-                  </Link>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        
 
         {/* Search */}
-        <div className="relative flex-1 max-w-xl">
-          <div className={`flex items-center gap-2 bg-input px-3 py-2 transition border-2 ${searchFocused ? "border-primary" : "border-border"}`}
+        <div className="relative flex-1 justify between w-[350px] ">
+          <div className={`ml-[30px] w-[400px] flex items-center gap-2 bg-input px-3 py-2 transition border-2 ${searchFocused ? "border-primary" : "border-border"}`}
                style={searchFocused ? { boxShadow: "4px 4px 0 0 #df158c" } : undefined}>
             <Search className="h-4 w-4 text-muted-foreground" />
             <input
@@ -92,10 +64,11 @@ export default function Navbar() {
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
               placeholder="SEARCH GAMES..."
-              className="w-full bg-transparent font-heading text-lg outline-none placeholder:text-muted-foreground"
+              className="w-[150px] bg-transparent font-heading text-lg outline-none placeholder:text-muted-foreground"
             />
           </div>
           <AnimatePresence>
+            
             {searchFocused && suggestions.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: -4 }}
@@ -122,6 +95,15 @@ export default function Navbar() {
               </motion.div>
             )}
           </AnimatePresence>
+                    
+
+        </div>
+
+        <div style={{ display: "flex", alignSelf : "end" }} className="relative mb-[10px]">
+              <a href="http://127.0.0.1:5500/UmbrellaRunner%20(121).html">
+                <img className="ml-20"  src={game} alt="" width={180} height={20}/>
+                <h6 className="absolute left-[85px] top-[20px]" >Try Our Game</h6>
+               </a>
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
@@ -145,7 +127,7 @@ export default function Navbar() {
           </Link>
           {/* Messages */}
           <Link to="/messages" className={`${navBtn(path === "/messages")} hidden sm:flex`} aria-label="Messages">
-            💬
+            <img src={masseg} alt="" className="pixel-img h-7 w-7" />
           </Link>
           {/* Wishlist */}
           <Link to="/favorites" className={navBtn(path === "/favorites")} aria-label="Wishlist">
@@ -168,7 +150,7 @@ export default function Navbar() {
             </span>
           </button>
           {/* Library */}
-          <Link to="/library" className={`${navBtn(path === "/library")} hidden sm:block`} aria-label="Library">
+          <Link to="/library">
             <img src={libraryIcon} alt="" className="pixel-img h-7 w-7" />
           </Link>
           {/* Cart */}

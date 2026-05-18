@@ -8,7 +8,6 @@ import { useShop } from "@/store/shop";
 import { useUI } from "@/store/ui";
 import TrailerModal from "@/components/TrailerModal";
 import cartIcon from "@/assets/icon-cart.png";
-import controllerIcon from "@/assets/icon-controller.png";
 
 export default function Hero() {
   const { addToCart } = useShop();
@@ -54,7 +53,6 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 px-3 py-2 glass pixel-border font-display text-[10px] tracking-[0.2em] text-primary mb-6"
           >
-            <img src={controllerIcon} alt="" className="pixel-img h-4 w-4" />
             FEATURED · NOW PLAYING
           </motion.div>
 
@@ -64,9 +62,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-display text-4xl md:text-6xl leading-[1.05] mb-6"
           >
-            CYBER
+            Crimson
             <br />
-            <span className="text-gradient-pink">ODYSSEY</span>
+            <span className="text-gradient-pink">Desert</span>
           </motion.h1>
 
           <motion.p
@@ -103,8 +101,8 @@ export default function Hero() {
           >
             <button
               onClick={() => {
-                const added = addToCart("cyber-odyssey");
-                if (added) { bumpCart(); toast.success("Cyber Odyssey added to cart!"); }
+                const added = addToCart("crimson-Desert");
+                if (added) { bumpCart(); toast.success("Crimson Desert added to cart!"); }
                 else toast("Already in your cart!");
               }}
               className="group relative inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform"
@@ -128,7 +126,7 @@ export default function Hero() {
       {/* Bottom fade */}
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
 
-      <TrailerModal open={trailerOpen} onClose={() => setTrailerOpen(false)} gameId="cyber-odyssey" />
+      <TrailerModal open={trailerOpen} onClose={() => setTrailerOpen(false)} gameId="crimson-Desert" />
     </section>
   );
 }

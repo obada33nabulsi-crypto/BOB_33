@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation } from "@tanstack/react-router";
 import { Toaster } from "sonner";
 import { ShopProvider } from "@/store/shop";
 import { UIProvider } from "@/store/ui";
@@ -9,8 +9,6 @@ import FriendsDrawer from "@/components/FriendsDrawer";
 import CartDrawer from "@/components/CartDrawer";
 import CheckoutModal from "@/components/CheckoutModal";
 import NexusAI from "@/components/NexusAI";
-
-
 
 import appCss from "../styles.css?url";
 
@@ -25,7 +23,7 @@ function NotFoundComponent() {
         </p>
         <div className="mt-6">
           <Link
-            to="/login"
+            to="/register"
             className="inline-flex items-center justify-center px-5 py-3 bg-primary text-primary-foreground font-display text-xs tracking-wider pixel-border-pink"
           >
             GO HOME
@@ -75,16 +73,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const location = useLocation();
+  const isIndex = location.pathname === '/';
+
   return (
     <AuthProvider>
       <ShopProvider>
         <UIProvider>
           <div className="min-h-screen bg-background text-foreground flex flex-col">
-            <Navbar />
+            {!isIndex && <Navbar />}
             <main className="flex-1">
               <Outlet />
             </main>
-            <Footer />
+            {!isIndex && <Footer />}
             <FriendsDrawer />
             <CartDrawer />
             <CheckoutModal />

@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Send, ArrowLeft, Smile, Image, CheckCheck } from "lucide-react";
 import { MOCK_CONVERSATIONS, getFriend, formatTime, type Message, type Conversation } from "@/lib/messages";
 import { useRequireAuth } from "@/hooks/use-require-auth";
+import masseg from "@/assets/masseges.png";
+
 
 export const Route = createFileRoute("/messages")({
   head: () => ({
@@ -272,7 +274,9 @@ function MessagesPage() {
         ) : (
           <div className="hidden md:flex flex-1 items-center justify-center">
             <div className="text-center space-y-3">
-              <div className="text-6xl">💬</div>
+              <div className="text-6xl flex items-center justify-center">
+                <img src={masseg} alt="" className="pixel-img h-[100px] w-[100px]" />
+              </div>
               <h3 className="font-display text-sm text-primary">SELECT A CONVERSATION</h3>
               <p className="font-heading text-xl text-muted-foreground">
                 Choose a friend to start chatting

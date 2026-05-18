@@ -28,13 +28,24 @@ import ScreenshotsGallery from "@/components/ScreenshotsGallery";
 import TrailerModal from "@/components/TrailerModal";
 import cartIcon from "@/assets/icon-cart.png";
 import heartIcon from "@/assets/icon-heart.png";
+import gameimg from "@/assets/heading-image/thumb-1920-917971.jpg";
 
 export const Route = createFileRoute("/game/$id")({
   loader: ({ params }) => {
-    const game = GAMES.find((g) => g.id === params.id);
-    if (!game) throw notFound();
-    return { game };
-  },
+  const game = GAMES.find(
+    (g) => g.id === (params.id || "iron-dynasty")
+  );
+
+  if (!game) throw notFound();
+
+  return {
+    game: {
+      ...game,
+      cover: game.id === "iron-dynasty" ? gameimg : game.cover,
+    },
+  };
+},
+
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
