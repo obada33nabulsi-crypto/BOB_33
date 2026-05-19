@@ -16,6 +16,7 @@ import NexusAI from "@/components/NexusAI";
 import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MyGame from "@/components/MyGame";
 
 
 export const Route = createFileRoute("/register")({
@@ -34,6 +35,7 @@ function Index() {
   return (
     <>
         <Hero />
+        <MyGame />
         <FeaturedCarousel />
         <CatalogGrid />
         <CategoriesSection />

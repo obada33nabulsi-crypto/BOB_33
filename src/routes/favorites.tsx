@@ -73,7 +73,7 @@ function FavoritesPage() {
             Browse the store and tap the heart to save games you love!
           </p>
           <Link
-            to="/"
+            to="/register"
             className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-display text-[10px] tracking-wider pixel-border-pink"
           >
             BROWSE STORE

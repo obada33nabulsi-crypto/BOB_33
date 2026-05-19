@@ -12,7 +12,6 @@ import libraryIcon from "@/assets/icon-library.png";
 import settingsIcon from "@/assets/icon-settings.png";
 import controllerIcon from "@/assets/icon-controller.png";
 import masseg from "@/assets/masseges.png";
-import game from "@/assets/tryGame.jpg"
 
 const CATEGORIES = ["Action", "RPG", "Strategy", "Indie", "Free to Play"];
 
@@ -99,12 +98,7 @@ export default function Navbar() {
 
         </div>
 
-        <div style={{ display: "flex", alignSelf : "end" }} className="relative mb-[10px]">
-              <a href="http://127.0.0.1:5500/UmbrellaRunner%20(121).html">
-                <img className="ml-20"  src={game} alt="" width={180} height={20}/>
-                <h6 className="absolute left-[85px] top-[20px]" >Try Our Game</h6>
-               </a>
-        </div>
+       
 
         <div className="flex items-center gap-2 ml-auto">
           {/* Publish your game */}
