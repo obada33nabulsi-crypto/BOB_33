@@ -15,11 +15,11 @@ import rinbowSixSage5 from "@/assets/games/rainbow-six-sage/img1 (5).jpg";
 import rinbowSixSage6 from "@/assets/games/rainbow-six-sage/img1 (6).jpg";
 
 import silentHill from "@/assets/games/Silent-hill/img (1).jpeg";
-import silentHill2 from "@/assets/games/silent-hill/img (1).jpg";
-import silentHill3 from "@/assets/games/silent-hill/img (2).jpg";
-import silentHill4 from "@/assets/games/silent-hill/img (3).jpg";
-import silentHill5 from "@/assets/games/silent-hill/img (4).jpg";
-import silentHill6 from "@/assets/games/silent-hill/img (5).jpg";
+import silentHill2 from "@/assets/games/Silent-hill/img (1).jpg";
+import silentHill3 from "@/assets/games/Silent-hill/img (2).jpg";
+import silentHill4 from "@/assets/games/Silent-hill/img (3).jpg";
+import silentHill5 from "@/assets/games/Silent-hill/img (4).jpg";
+import silentHill6 from "@/assets/games/Silent-hill/img (5).jpg";
 
 import spiderMan from "@/assets/games/spider-man/img (1).jpeg";
 import spiderMan2 from "@/assets/games/spider-man/img (1).jpg";
@@ -35,12 +35,12 @@ import redDead4 from "@/assets/games/red-dead/img (2).png";
 import redDead5 from "@/assets/games/red-dead/img (4).jpg";
 import redDead6 from "@/assets/games/red-dead/img (5).jpg"; 
 
-import assassin from "@/assets/games/assassin-creed/img (1).jpg";
-import assassin2 from "@/assets/games/assassin-creed/img (2).jpg";
-import assassin3 from "@/assets/games/assassin-creed/img (3).jpg";
-import assassin4 from "@/assets/games/assassin-creed/img (4).jpg";
-import assassin5 from "@/assets/games/assassin-creed/img (5).jpg";
-import assassin6 from "@/assets/games/assassin-creed/img (6).jpg";
+import assassin from "@/assets/games/Assassin-creed/img (1).jpg";
+import assassin2 from "@/assets/games/Assassin-creed/img (2).jpg";
+import assassin3 from "@/assets/games/Assassin-creed/img (3).jpg";
+import assassin4 from "@/assets/games/Assassin-creed/img (4).jpg";
+import assassin5 from "@/assets/games/Assassin-creed/img (5).jpg";
+import assassin6 from "@/assets/games/Assassin-creed/img (6).jpg";
 
 import theWicher from "@/assets/games/the-witcher/img (1).jpg";
 import theWitcher2 from "@/assets/games/the-witcher/img (2).jpg";
