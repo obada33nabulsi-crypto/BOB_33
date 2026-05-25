@@ -49,9 +49,11 @@ export const Route = createRootRoute({
       { property: "og:description", content: "Discover, collect, and play the next generation of games." },
       { name: "twitter:description", content: "Discover, collect, and play the next generation of games." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/22caee8a-7373-45a6-920f-9879b867971b/id-preview-ec20eba7--30540425-2ca2-4b19-a95a-eddb3498c9dd.lovable.app-1776714009722.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/22caee8a-7373-45a6-920f-9879b867971b/id-preview-ec20eba7--30540425-2ca2-4b19-a95a-eddb3498c9dd.lovable.app-1776714009722.png" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Space+Grotesk:wght@400;500;600;700&display=swap" },
+      { rel: "stylesheet", href: appCss },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
