@@ -318,8 +318,8 @@ function RegisterPage() {
 
         <div>
           <a href="/register"
-            style={{ padding:"10px 133px", background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
-            className="w-full py-3 font-display text-xs tracking-wider text-white border-2 border-[#1a1a1a] transition hover:shadow-[0_0_20px_rgba(234,52,169,0.7)] disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{  background: "linear-gradient(135deg, #ea34a9, #7e5ecc)" }}
+            className="w-full py-3 px-22 font-display text-xs tracking-wider text-white border-2 border-[#1a1a1a] transition hover:shadow-[0_0_20px_rgba(234,52,169,0.7)] disabled:opacity-50 disabled:cursor-not-allowed"
           > sign in as guest </a>
         </div>
       </form>
