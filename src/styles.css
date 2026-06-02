@@ -1,15 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @import "tw-animate-css";
-
-
-<<<<<<< HEAD
-=======
-@source "../src";
-
-
->>>>>>> 822dfedab14fe0e087993a3bff3c0bb344f5c958
 
 @custom-variant dark (&:is(.dark *));
 
